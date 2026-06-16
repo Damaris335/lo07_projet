@@ -1,10 +1,10 @@
 
 <!-- ----- debut Router2 -->
 <?php
-require ('../controller/ControllerAuth.php');
-require ('../controller/ControllerTrajet.php');
-require ('../controller/ControllerReservation.php');
-require ('../controller/ControllerUtilisateur.php');
+require ('../controller/controllerAuth.php');
+require ('../controller/controllerTrajet.php');
+require ('../controller/controllerReservation.php');
+require ('../controller/controllerUtilisateur.php');
 
 
 parse_str($_SERVER['QUERY_STRING'], $param);
@@ -13,19 +13,18 @@ unset($param['action']);
 $args = $param;
 
 // --- Actions publiques (pas besoin d'être connecté)
-$actionsPubliques = ['accueil', 'authLogin', 'authLoginPost', 'trajetReadAll', 'trajetReadOne'];
+// $actionsPubliques = ['accueil', 'authLogin', 'authLoginPost', 'trajetReadAll', 'trajetReadOne'];
 
 // --- Vérification session pour les actions protégées
-if (!in_array($action, $actionsPubliques) && !isset($_SESSION['utilisateur'])) {
-    $action = 'authLogin';
-}
+//if (!in_array($action, $actionsPubliques) && !isset($_SESSION['utilisateur'])) {
+//    $action = 'authLogin';
+//}
 
 
 
 // --- Liste des méthodes autorisées
 switch ($action) {
     // === AUTH ===
-    case 'accueil':
     case 'authLogin':
     case 'authLoginPost':
     case 'authLogout':

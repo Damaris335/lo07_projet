@@ -1,13 +1,13 @@
 <!-- ----- debut ControllerAuth -->
 <?php
-require_once '../model/ModelUtilisateur.php';
+require_once '../model/modelUtilisateur.php';
 
 class ControllerAuth {
 
     // --- Page d'accueil (publique)
     public static function accueil() {
         include 'config.php';
-        $vue = $root . '/app/view/auth/viewAccueil.php';
+        $vue = $root . 'app/view/viewBlablacarAccueil.php';
         if (DEBUG) echo ("ControllerAuth : accueil : vue = $vue");
         require($vue);
     }
@@ -16,8 +16,8 @@ class ControllerAuth {
     public static function authLogin($args = null) {
         include 'config.php';
         $erreur = null;
-        $vue = $root . '/app/view/login/viewLogin.php';
-        if (DEBUG) echo ("ControllerAuth : authLogin : vue = $vue");
+        $vue = $root . 'app/view/login/viewLogin.php';
+        if (DEBUG) echo ("controllerAuth : authLogin : vue = $vue");
         require($vue);
     }
 
@@ -33,7 +33,7 @@ class ControllerAuth {
         // --- Validation basique
         if (empty($login) || empty($password)) {
             $erreur = "Veuillez remplir tous les champs.";
-            $vue = $root . '/app/view/login/viewLogin.php';
+            $vue = $root . 'app/view/login/viewLogin.php';
             require($vue);
             return;
         }
@@ -43,7 +43,7 @@ class ControllerAuth {
 
         if ($utilisateur === NULL) {
             $erreur = "Login ou mot de passe incorrect.";
-            $vue = $root . '/app/view/login/viewLogin.php';
+            $vue = $root . 'app/view/login/viewLogin.php';
             require($vue);
             return;
         }
@@ -61,7 +61,7 @@ class ControllerAuth {
         }
 
         // --- Redirection vers la liste des trajets
-        header('Location: router.php?action=trajetReadAll');
+        header('Location: router2.php?action=trajetReadAll');
         exit;
     }
 
@@ -70,7 +70,7 @@ class ControllerAuth {
         $_SESSION['login_id'] = -1;
         session_unset();
         session_destroy();
-        header('Location: router.php?action=authLogin');
+        header('Location: router2.php?action=authLogin');
         exit;
     }
 

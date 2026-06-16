@@ -1,9 +1,10 @@
 <!-- ----- début viewLogin -->
-<?php require($root . '../app/view/fragment/fragmentHeader.html'); ?>
+<?php require($root . 'app/view/fragment/fragmentBlablacarHeader.html'); ?>
 
 <body>
   <div class="container">
-    <?php include $root . '../app/view/fragment/fragmentMenu.html'; ?>
+    <?php include $root . 'app/view/fragment/fragmentBlablacarMenu.php'; 
+    include $root . 'app/view/fragment/fragmentBlablacarJumbotron.html';?>
 
     <div class="row justify-content-center mt-5">
       <div class="col-md-4">
@@ -47,5 +48,5 @@
     </div>
 
   </div>
-  <?php include $root . '/app/view/fragment/fragmentFooter.html'; ?>
+  <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
 <!-- ----- fin viewLogin -->

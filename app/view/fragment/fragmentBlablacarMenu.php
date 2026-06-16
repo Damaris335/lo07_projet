@@ -8,12 +8,12 @@ $solde   = $_SESSION['solde']    ?? '';
 $role    = $_SESSION['role']     ?? '';
 ?>
 
-<nav class="navbar navbar-expand-lg bg-primary fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid">
 
     <!-- Marque : noms étudiants | utilisateur connecté | solde -->
     <span class="navbar-brand text-white fw-bold">
-      BARBOT et VERSCHELDE
+      <a class="navbar-brand text-white" href="router2.php?action=accueil">BARBOT et VERSCHELDE</a>
       <?php if ($loginId != -1): ?>
         | <?php echo htmlspecialchars($prenom . ' ' . $nom); ?>
         | <?php echo number_format($solde, 2, '.', ''); ?> €
@@ -36,15 +36,15 @@ $role    = $_SESSION['role']     ?? '';
           <a class="nav-link dropdown-toggle text-white" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">Administrateur</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router.php?action=utilisateurReadAll">Liste des utilisateurs</a></li>
-            <li><a class="dropdown-item" href="router.php?action=utilisateurCreateConducteur">Ajout d'un conducteur</a></li>
-            <li><a class="dropdown-item" href="router.php?action=utilisateurCreatePassager">Ajout d'un passager</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=utilisateurReadAll">Liste des utilisateurs</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=utilisateurCreateConducteur">Ajout d'un conducteur</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=utilisateurCreatePassager">Ajout d'un passager</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="router.php?action=vehiculeReadAll">Liste des véhicules</a></li>
-            <li><a class="dropdown-item" href="router.php?action=vehiculeCreate">Ajout d'un véhicule</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=vehiculeReadAll">Liste des véhicules</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=vehiculeCreate">Ajout d'un véhicule</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="router.php?action=villeReadAll">Liste des villes</a></li>
-            <li><a class="dropdown-item" href="router.php?action=villeCreate">Ajout d'une ville</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=villeReadAll">Liste des villes</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=villeCreate">Ajout d'une ville</a></li>
           </ul>
         </li>
 
@@ -54,13 +54,13 @@ $role    = $_SESSION['role']     ?? '';
           <a class="nav-link dropdown-toggle text-white" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">Conducteur</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router.php?action=vehiculeMesVehicules">Liste de mes véhicules</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=vehiculeMesVehicules">Liste de mes véhicules</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="router.php?action=trajetMesTrajets">Liste de tous mes trajets (actifs et passifs)</a></li>
-            <li><a class="dropdown-item" href="router.php?action=trajetCreate">Ajout d'un trajet</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=trajetMesTrajets">Liste de tous mes trajets (actifs et passifs)</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=trajetCreate">Ajout d'un trajet</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="router.php?action=trajetPassagers">Liste des passagers de l'un de mes trajets actifs</a></li>
-            <li><a class="dropdown-item" href="router.php?action=trajetCloturer">Cloturer l'un de mes trajets actifs</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=trajetPassagers">Liste des passagers de l'un de mes trajets actifs</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=trajetCloturer">Cloturer l'un de mes trajets actifs</a></li>
           </ul>
         </li>
 
@@ -70,8 +70,8 @@ $role    = $_SESSION['role']     ?? '';
           <a class="nav-link dropdown-toggle text-white" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">Passager</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router.php?action=reservationMesReservations">Liste de mes réservations</a></li>
-            <li><a class="dropdown-item" href="router.php?action=reservationCreate">Réservation d'un trajet actif</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=reservationMesReservations">Liste de mes réservations</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=reservationCreate">Réservation d'un trajet actif</a></li>
           </ul>
         </li>
         <?php endif; ?>
@@ -81,8 +81,8 @@ $role    = $_SESSION['role']     ?? '';
           <a class="nav-link dropdown-toggle text-white" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">Innovations</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router.php?action=innovationData">Proposez une fonctionnalité originale</a></li>
-            <li><a class="dropdown-item" href="router.php?action=innovationMVC">Proposez une amélioration du code MVC</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=innovationData">Proposez une fonctionnalité originale</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=innovationMVC">Proposez une amélioration du code MVC</a></li>
           </ul>
         </li>
 
@@ -91,8 +91,8 @@ $role    = $_SESSION['role']     ?? '';
           <a class="nav-link dropdown-toggle text-white" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">Examinateur</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router.php?action=examinateurSuperglobales">SuperGlobales (Cookies et Session)</a></li>
-            <li><a class="dropdown-item" href="router.php?action=examinateurReservations">Ajout de 10 réservations aléatoires</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=examinateurSuperglobales">SuperGlobales (Cookies et Session)</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=examinateurReservations">Ajout de 10 réservations aléatoires</a></li>
           </ul>
         </li>
 
@@ -101,8 +101,8 @@ $role    = $_SESSION['role']     ?? '';
           <a class="nav-link dropdown-toggle text-white" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">Se connecter</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router.php?action=authLogin">Login</a></li>
-            <li><a class="dropdown-item" href="router.php?action=authLogout">Déconnexion</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=authLogin">Login</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=authLogout">Déconnexion</a></li>
           </ul>
         </li>
 
