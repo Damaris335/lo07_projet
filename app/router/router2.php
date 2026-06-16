@@ -5,6 +5,7 @@ require ('../controller/controllerAuth.php');
 //require ('../controller/controllerTrajet.php');
 //require ('../controller/controllerReservation.php');
 require ('../controller/controllerUtilisateur.php');
+require ('../controller/controllerExaminateur.php');
 
 
 parse_str($_SERVER['QUERY_STRING'], $param);
@@ -55,6 +56,13 @@ switch ($action) {
     case 'utilisateurReadAll':  // admin seulement
         ControllerUtilisateur::$action($args);
         break;
+    
+    // === EXAMINATEUR ===
+    case 'examinateurSuperglobales':
+        ControllerExam::$action($args);
+        break;
+    
+    
 
     default:
         $action = 'accueil';
