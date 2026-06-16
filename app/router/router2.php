@@ -1,9 +1,11 @@
-
 <!-- ----- debut Router2 -->
 <?php
+session_start(); 
 require ('../controller/controllerAuth.php');
+require ('../controller/controllerVille.php');
 //require ('../controller/controllerTrajet.php');
 //require ('../controller/controllerReservation.php');
+require ('../controller/controllerVehicule.php');
 require ('../controller/controllerUtilisateur.php');
 require ('../controller/controllerExaminateur.php');
 
@@ -41,6 +43,16 @@ switch ($action) {
     case 'trajetDeleted':
         ControllerTrajet::$action($args);
         break;
+    
+    // === VÉHICULE ===
+    case 'vehiculeReadAll':
+        ControllerVehicule::$action($args);
+        break;
+    
+    // === VILLE ===
+    case 'villeReadAll':
+        ControllerVille::$action($args);
+        break;
 
     // === RESERVATIONS ===
     case 'reservationCreate':
@@ -61,9 +73,8 @@ switch ($action) {
     case 'examinateurSuperglobales':
         ControllerExam::$action($args);
         break;
-    
-    
 
+    // === ACCUEIL ===
     default:
         $action = 'accueil';
         ControllerAuth::$action($args);

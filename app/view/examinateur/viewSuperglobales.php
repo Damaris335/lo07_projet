@@ -1,8 +1,4 @@
 <!-- début viewSuperglobales -->   
-<?php
-session_start();
-?>
-
 <?php require($root . 'app/view/fragment/fragmentBlablacarHeader.html'); ?>
 
 <body>
@@ -12,7 +8,7 @@ session_start();
         ?>
 
         <div class="row justify-content-center mt-5">
-            <div class="col-md-4">
+            <div class="col-md-12">
 
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white text-center">
@@ -26,46 +22,8 @@ session_start();
                             </div>
                             <?php endif; ?>
 
-
-
-                        <div class="card">
-                            <div class="card-body bg-info">
-                                <div class='mx-lg-3'> 
-
-                                    <h3 class="mt-4">Avec la méthode POST :</h3>
-                                    <table class="table table-bordered mt-2 bg-light">
-                                        <thead>
-                                            <tr><th>#</th><th>Clé</th><th>Valeur</th></tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $i = 1;
-                                            foreach ($_POST as $cle => $valeur) {
-                                                if ($cle == "envoi") {
-                                                    continue; // On cache le bouton
-                                                }
-
-                                                echo "<tr>";
-                                                printf("<td><b>%d</b></td>", $i);
-                                                printf("<td>%s</td>", htmlspecialchars($cle));
-                                                echo "<td>";
-                                                if (is_array($valeur)) {
-                                                    printf("%s", htmlspecialchars(implode(", ", $valeur)));
-                                                } else {
-                                                    printf("%s", htmlspecialchars($valeur));
-                                                }
-                                                echo "</td></tr>";
-                                                $i++;
-                                            }
-                                            if ($i == 1)
-                                                echo "<tr><td colspan='3' class='text-center'>Aucune donnée POST reçue</td></tr>";
-                                            ?>
-                                        </tbody>
-                                    </table>
-
-
                                     <!-- Le cookie _ga est Google analytics, cookie déposé automatiquement si on visite un site qui l'utilise ou si l'environnement de dév est configuré pour-->
-                                    <h3 class="mt-4">Avec la superglobale $_COOKIE : </h3>
+                                    <h3 class="mt-4">$_COOKIE</h3>
                                     <table class="table table-bordered mt-2 bg-light">
                                         <thead>
                                             <tr><th>#</th><th>Clé</th><th>Valeur</th></tr>
@@ -95,7 +53,7 @@ session_start();
                                         </tbody>
                                     </table>
 
-                                    <h3 class="mt-4">Avec la superglobale $_SESSION : </h3>
+                                    <h3 class="mt-4">$_SESSION</h3>
                                     <table class="table table-bordered mt-2 bg-light">
                                         <thead>
                                             <tr><th>#</th><th>Clé</th><th>Valeur</th></tr>
@@ -128,11 +86,9 @@ session_start();
                                 </div>
 
                             </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
-
+  <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
 </body>
