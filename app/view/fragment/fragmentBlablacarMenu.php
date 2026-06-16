@@ -1,68 +1,114 @@
-
 <!-- ----- début fragmentBlablacarMenu -->
+<?php
+// Récupération des infos de session
+$loginId = $_SESSION['login_id'] ?? -1;
+$nom     = $_SESSION['nom']      ?? '';
+$prenom  = $_SESSION['prenom']   ?? '';
+$solde   = $_SESSION['solde']    ?? '';
+$role    = $_SESSION['role']     ?? '';
+?>
 
-<nav class="navbar navbar-expand-lg bg-success fixed-top">
+<nav class="navbar navbar-expand-lg bg-primary fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="router2.php?action=CaveAccueil">BARBOT & VERSCHELDE</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Marque : noms étudiants | utilisateur connecté | solde -->
+    <span class="navbar-brand text-white fw-bold">
+      BARBOT et VERSCHELDE
+      <?php if ($loginId != -1): ?>
+        | <?php echo htmlspecialchars($prenom . ' ' . $nom); ?>
+        | <?php echo number_format($solde, 2, '.', ''); ?> €
+      <?php endif; ?>
+    </span>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarBlablacar"
+            aria-controls="navbarBlablacar" aria-expanded="false"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <div class="collapse navbar-collapse" id="navbarBlablacar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+        <!-- ===== MENU ADMINISTRATEUR ===== -->
+        <?php if ($role === 'administrateur'): ?>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrateur</a>
+          <a class="nav-link dropdown-toggle text-white" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Administrateur</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router2.php?action=producteurReadAll">Liste des utilisateurs</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurReadId&target=producteurReadOne">Ajout d'un conducteur</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurCreate">Ajout d'un passager</a></li> 
+            <li><a class="dropdown-item" href="router.php?action=utilisateurReadAll">Liste des utilisateurs</a></li>
+            <li><a class="dropdown-item" href="router.php?action=utilisateurCreateConducteur">Ajout d'un conducteur</a></li>
+            <li><a class="dropdown-item" href="router.php?action=utilisateurCreatePassager">Ajout d'un passager</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurReadRegion">Liste des véhicules</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurByRegion">Ajout d'un véhicule</a></li> 
+            <li><a class="dropdown-item" href="router.php?action=vehiculeReadAll">Liste des véhicules</a></li>
+            <li><a class="dropdown-item" href="router.php?action=vehiculeCreate">Ajout d'un véhicule</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurReadId&target=producteurDeleted">Liste des villes</a></li> 
-            <li><a class="dropdown-item" href="router2.php?action=producteurReadId&target=producteurDeleted">Ajout d'une ville</a></li> 
+            <li><a class="dropdown-item" href="router.php?action=villeReadAll">Liste des villes</a></li>
+            <li><a class="dropdown-item" href="router.php?action=villeCreate">Ajout d'une ville</a></li>
           </ul>
         </li>
 
+        <!-- ===== MENU CONDUCTEUR ===== -->
+        <?php elseif ($role === 'conducteur'): ?>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Conducteur</a>
+          <a class="nav-link dropdown-toggle text-white" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Conducteur</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router2.php?action=producteurReadAll">Liste de mes véhicules</a></li>
+            <li><a class="dropdown-item" href="router.php?action=vehiculeMesVehicules">Liste de mes véhicules</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurReadId&target=producteurReadOne">Liste de tous mes trajets (actifs et passifs)</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurCreate">Ajout d'un trajet</a></li> 
+            <li><a class="dropdown-item" href="router.php?action=trajetMesTrajets">Liste de tous mes trajets (actifs et passifs)</a></li>
+            <li><a class="dropdown-item" href="router.php?action=trajetCreate">Ajout d'un trajet</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurReadRegion">Liste des passagers de l'un de mes trajets actifs</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=producteurByRegion">Clôturer l'un de mes trajets actifs</a></li> 
+            <li><a class="dropdown-item" href="router.php?action=trajetPassagers">Liste des passagers de l'un de mes trajets actifs</a></li>
+            <li><a class="dropdown-item" href="router.php?action=trajetCloturer">Cloturer l'un de mes trajets actifs</a></li>
           </ul>
         </li>
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Passager</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router2.php?action=recolteReadAll">Liste de mes réservations</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=recolteCreate">Réservation d'un trajet actif</a></li>
-          </ul>
-        </li>
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">DOCUMENTATION</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router2.php?action=caveProposition1">Proposition d'amélioration 1</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=caveProposition2">Proposition d'amélioration 2</a></li>
 
+        <!-- ===== MENU PASSAGER ===== -->
+        <?php elseif ($role === 'passager'): ?>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Passager</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router.php?action=reservationMesReservations">Liste de mes réservations</a></li>
+            <li><a class="dropdown-item" href="router.php?action=reservationCreate">Réservation d'un trajet actif</a></li>
           </ul>
         </li>
-        
-        
+        <?php endif; ?>
+
+        <!-- ===== MENU INNOVATIONS (toujours visible) ===== -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Innovations</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router.php?action=innovationData">Proposez une fonctionnalité originale</a></li>
+            <li><a class="dropdown-item" href="router.php?action=innovationMVC">Proposez une amélioration du code MVC</a></li>
+          </ul>
+        </li>
+
+        <!-- ===== MENU EXAMINATEUR (toujours visible) ===== -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Examinateur</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router.php?action=examinateurSuperglobales">SuperGlobales (Cookies et Session)</a></li>
+            <li><a class="dropdown-item" href="router.php?action=examinateurReservations">Ajout de 10 réservations aléatoires</a></li>
+          </ul>
+        </li>
+
+        <!-- ===== MENU SE CONNECTER (toujours visible) ===== -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Se connecter</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router.php?action=authLogin">Login</a></li>
+            <li><a class="dropdown-item" href="router.php?action=authLogout">Déconnexion</a></li>
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>
-</nav> 
+</nav>
 
 <!-- ----- fin fragmentBlablacarMenu -->
-
-
-

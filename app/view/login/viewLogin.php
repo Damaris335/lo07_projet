@@ -20,7 +20,7 @@
               </div>
             <?php endif; ?>
 
-            <form method="get" action="router.php">
+            <form method="get" action="router2.php">
               <input type="hidden" name="action" value="authLoginPost">
 
               <div class="mb-3">
