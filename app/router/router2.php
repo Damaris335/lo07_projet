@@ -2,8 +2,8 @@
 <!-- ----- debut Router2 -->
 <?php
 require ('../controller/controllerAuth.php');
-require ('../controller/controllerTrajet.php');
-require ('../controller/controllerReservation.php');
+//require ('../controller/controllerTrajet.php');
+//require ('../controller/controllerReservation.php');
 require ('../controller/controllerUtilisateur.php');
 
 
