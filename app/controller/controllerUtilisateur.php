@@ -9,44 +9,40 @@ class ControllerUtilisateur {
         include 'config.php';
         $results = ModelUtilisateur::getAll();
         $vue = $root . '/app/view/utilisateur/viewAll.php';
-        if (DEBUG) echo ("ControllerUtilisateur : utilisateurReadAll : vue = $vue");
+        if (DEBUG)
+            echo ("ControllerUtilisateur : utilisateurReadAll : vue = $vue");
         require($vue);
     }
 
     // --- A2 : Formulaire ajout conducteur
-    public static function utilisateurCreateConducteur($args = null) {
+    public static function utilisateurCreate($args) {
         include 'config.php';
-        $role = 'conducteur';
+        $target = isset($args['target']) ? $args['target'] : 'conducteur';
+        if (DEBUG)
+            echo ("ControllerProducteur:producteurReadId : target = $target</br>");
+
         $vue = $root . '/app/view/utilisateur/viewInsert.php';
-        if (DEBUG) echo ("ControllerUtilisateur : utilisateurCreateConducteur : vue = $vue");
+        if (DEBUG)
+            echo ("ControllerUtilisateur : utilisateurCreateConducteur : vue = $vue");
         require($vue);
     }
 
-    // --- A3 : Formulaire ajout passager
-    public static function utilisateurCreatePassager($args = null) {
-        include 'config.php';
-        $role = 'passager';
-        $vue = $root . '/app/view/utilisateur/viewInsert.php';
-        if (DEBUG) echo ("ControllerUtilisateur : utilisateurCreatePassager : vue = $vue");
-        require($vue);
-    }
-
-    // --- Traitement du formulaire d'ajout (conducteur ou passager)
-    public static function utilisateurCreated($args = null) {
+    // Affiche un producteur particulier (id)
+    public static function utilisateurCreated($args) {
         include 'config.php';
 
-        $nom    = htmlspecialchars(trim($_GET['nom']));
-        $prenom = htmlspecialchars(trim($_GET['prenom']));
-        $role   = htmlspecialchars(trim($_GET['role']));  // passé en champ hidden
-        $solde  = htmlspecialchars(trim($_GET['solde']));
+        $id = ModelUtilisateur::insert(
+                htmlspecialchars($_GET['nom']),
+                htmlspecialchars($_GET['prenom']),
+                htmlspecialchars($_GET['role']),
+                htmlspecialchars($_GET['solde'])
+        );
 
-        $results = ModelUtilisateur::insert($nom, $prenom, $role, $solde);
+        $results = ModelUtilisateur::getById($id);
 
         $vue = $root . '/app/view/utilisateur/viewInserted.php';
-        if (DEBUG) echo ("ControllerUtilisateur : utilisateurCreated : vue = $vue");
         require($vue);
     }
-
 }
 ?>
 <!-- ----- fin ControllerUtilisateur -->

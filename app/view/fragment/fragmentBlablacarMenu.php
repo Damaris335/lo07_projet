@@ -37,8 +37,8 @@ $role    = $_SESSION['role']     ?? '';
              data-bs-toggle="dropdown" aria-expanded="false">Administrateur</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router2.php?action=utilisateurReadAll">Liste des utilisateurs</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=utilisateurCreateConducteur">Ajout d'un conducteur</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=utilisateurCreatePassager">Ajout d'un passager</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=utilisateurCreate&target=conducteur">Ajout d'un conducteur</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=utilisateurCreate&target=passager">Ajout d'un passager</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="router2.php?action=vehiculeReadAll">Liste des véhicules</a></li>
             <li><a class="dropdown-item" href="router2.php?action=vehiculeCreate">Ajout d'un véhicule</a></li>

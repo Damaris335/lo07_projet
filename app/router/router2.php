@@ -66,6 +66,8 @@ switch ($action) {
     // === UTILISATEUR ===
     case 'utilisateurProfil':
     case 'utilisateurReadAll':  // admin seulement
+    case 'utilisateurCreate':
+    case 'utilisateurCreated':
         ControllerUtilisateur::$action($args);
         break;
     
