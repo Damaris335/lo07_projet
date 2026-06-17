@@ -78,15 +78,13 @@ class ModelVehicule {
         }
     }
 
-    // --- A5 : Insertion d'un véhicule
     public static function insert($marque, $modele, $annee, $immatriculation, $proprietaire_id) {
         try {
-            $database  = Model::getInstance();
-
-            $query     = "SELECT MAX(id) FROM vehicule";
+            $database = Model::getInstance();
+            $query    = "SELECT MAX(id) FROM vehicule";
             $statement = $database->query($query);
-            $tuple     = $statement->fetch();
-            $id        = $tuple[0] + 1;
+            $tuple    = $statement->fetch();
+            $id       = $tuple[0] + 1;
 
             $query = "INSERT INTO vehicule VALUES (:id, :marque, :modele, :annee, :immatriculation, :proprietaire_id)";
             $statement = $database->prepare($query);
@@ -102,6 +100,36 @@ class ModelVehicule {
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return -1;
+        }
+    }
+
+    public static function getById($id) {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from vehicule where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelVehicule");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    
+    }
+
+    public static function getAllConducteurs() {
+        try {
+            $database  = Model::getInstance();
+            $query     = "SELECT * FROM utilisateur WHERE role = 'conducteur'";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
         }
     }
 

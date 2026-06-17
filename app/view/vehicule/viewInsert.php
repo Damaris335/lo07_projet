@@ -16,8 +16,15 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
         <label class='w-25' for="id">marque : </label><input type="text" name='marque' size='75'> <br/>                          
         <label class='w-25' for="id">modele : </label><input type="text" name='modele' size='75'> <br/> 
         <label class='w-25' for="id">année : </label><input type="text" name='annee' size='75'> <br/>    
-        <label class='w-25' for="id">annee : </label><input type="text" name='modele' size='75'> <br/> 
-        
+        <label class='w-25' for="id">immatriculation : </label><input type="text" name='immatriculation' size='75'> <br/> 
+        <label class='w-25' for="id">propriétaireé : </label>
+        <select name="proprietaire_id">
+          <?php foreach ($conducteurs as $c): ?>
+            <option value="<?php echo $c->id; ?>">
+              <?php echo $c->prenom . ' ' . $c->nom; ?>
+            </option>
+          <?php endforeach; ?>
+        </select><br/>
       </div>
       <p/>
        <br/> 

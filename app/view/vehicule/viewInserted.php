@@ -11,25 +11,24 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
     include $root . '/app/view/fragment/fragmentBlablacarJumbotron.html';
     ?>
     <!-- ===================================================== -->
-    <h2><?php echo $_GET['role'];?> ajouté avec succès</h2>
+    <h2>Vehicule ajouté avec succès</h2>
         <table class = "table table-striped table-bordered">
             <thead>
                 <tr>
 
-                    <th scope = "col">nom</th>
-                    <th scope = "col">prenom</th>
-                    <th scope = "col">role</th>
-                    <th scope = "col">login</th>
-                    <th scope = "col">password</th>
-                    <th scope = "col">solde</th>
+                    <th scope = "col">marque</th>
+                    <th scope = "col">modele</th>
+                    <th scope = "col">année</th>
+                    <th scope = "col">immatriculation</th>
+                    <th scope = "col">propriétaire</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 // La liste des vins est dans une variable $results             
                 foreach ($results as $element) {
-                    printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>", $element->getNom(),
-                            $element->getPrenom(), $element->getRole(), $element->getLogin(), $element->getPassword(), $element->getSolde());
+                    printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>", $element->getMarque(),
+                            $element->getModele(), $element->getAnnee(), $element->getImmatriculation(), $element->getProprietaireId());
                 }
                 ?>
             </tbody>
@@ -38,4 +37,5 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
     <?php
     include $root . '/app/view/fragment/fragmentBlablacarFooter.html';
     ?>
+    </body>
     <!-- ----- fin viewInserted -->   

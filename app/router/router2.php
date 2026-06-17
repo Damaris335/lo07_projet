@@ -46,6 +46,8 @@ switch ($action) {
     
     // === VÉHICULE ===
     case 'vehiculeReadAll':
+    case 'vehiculeCreate':
+    case 'vehiculeCreated':
         ControllerVehicule::$action($args);
         break;
     

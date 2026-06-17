@@ -14,28 +14,24 @@ class ControllerVehicule {
         require($vue);
     }
 
-    // --- A5 : Formulaire ajout véhicule (admin)
-    public static function vehiculeCreate($args = null) {
+    public static function vehiculeCreate($args) {
         include 'config.php';
-        // On récupère les conducteurs pour le select du propriétaire
-        $conducteurs = ModelUtilisateur::getAllConducteurs();
+        $conducteurs = ModelVehicule::getAllConducteurs();
         $vue = $root . '/app/view/vehicule/viewInsert.php';
-        if (DEBUG) echo ("ControllerVehicule : vehiculeCreate : vue = $vue");
         require($vue);
     }
 
-    // --- A5 : Traitement formulaire ajout véhicule
-    public static function vehiculeCreated($args = null) {
+    public static function vehiculeCreated($args) {
         include 'config.php';
-        $marque          = htmlspecialchars(trim($_GET['marque']));
-        $modele          = htmlspecialchars(trim($_GET['modele']));
-        $annee           = htmlspecialchars(trim($_GET['annee']));
-        $immatriculation = htmlspecialchars(trim($_GET['immatriculation']));
-        $proprietaire_id = htmlspecialchars(trim($_GET['proprietaire_id']));
-
-        $results = ModelVehicule::insert($marque, $modele, $annee, $immatriculation, $proprietaire_id);
+        $id = ModelVehicule::insert(
+            htmlspecialchars($_GET['marque']),
+            htmlspecialchars($_GET['modele']),
+            htmlspecialchars($_GET['annee']),
+            htmlspecialchars($_GET['immatriculation']),
+            htmlspecialchars($_GET['proprietaire_id'])
+        );
+        $results = ModelVehicule::getById($id);
         $vue = $root . '/app/view/vehicule/viewInserted.php';
-        if (DEBUG) echo ("ControllerVehicule : vehiculeCreated : vue = $vue");
         require($vue);
     }
 
