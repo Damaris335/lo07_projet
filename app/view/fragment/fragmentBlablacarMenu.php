@@ -15,7 +15,7 @@ $role    = $_SESSION['role']     ?? '';
     <span class="navbar-brand text-white fw-bold">
       <a class="navbar-brand text-white" href="router2.php?action=accueil">BARBOT et VERSCHELDE</a>
       <?php if ($loginId != -1): ?>
-        | <?php echo htmlspecialchars($prenom . ' ' . $nom); ?>
+        | <?php echo htmlspecialchars($nom . ' ' . $prenom); ?>
         | <?php echo number_format($solde, 2, '.', ''); ?> €
       <?php endif; ?>
     </span>
