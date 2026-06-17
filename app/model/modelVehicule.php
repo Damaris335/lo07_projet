@@ -3,11 +3,9 @@
 require_once 'model.php';
 
 class ModelVehicule {
-
     private $id, $marque, $modele, $annee, $immatriculation, $proprietaire_id;
     // Ces deux propriétés sont remplies uniquement par getAll() via le JOIN
     private $nom, $prenom;
-
     public function __construct(
         $id = NULL, $marque = NULL, $modele = NULL,
         $annee = NULL, $immatriculation = NULL, $proprietaire_id = NULL
@@ -21,7 +19,7 @@ class ModelVehicule {
             $this->proprietaire_id = $proprietaire_id;
         }
     }
-
+    
     // --- Getters
     function getId()              { return $this->id; }
     function getMarque()          { return $this->marque; }

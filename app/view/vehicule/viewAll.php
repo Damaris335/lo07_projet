@@ -1,4 +1,3 @@
-
 <!-- ----- début viewAll -->
 <?php
 require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
@@ -10,8 +9,9 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
         include $root . '/app/view/fragment/fragmentBlablacarMenu.php';
         include $root . '/app/view/fragment/fragmentBlablacarJumbotron.html';
         ?>
-        <h2> Liste de véhicules</h2>
 
+        <h2> Liste de véhicules</h2>
+        
         <table class = "table table-striped téable-bordered">
             <thead>
                 <tr>
@@ -25,7 +25,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
             </thead>
             <tbody>
                 <?php
-                // La liste des vins est dans une variable $results             
+                // La liste des vins est dans une variable $results            
                 foreach ($results as $element) {
                     printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>", $element->getMarque(),
                             $element->getModele(), $element->getAnnee(), $element->getImmatriculation(), $element->getPrenom() . ' ' . $element->getNom());
@@ -37,5 +37,3 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
     <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
 </body>
 <!-- ----- fin viewAll -->
-
-

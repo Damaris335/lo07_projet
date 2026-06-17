@@ -4,7 +4,7 @@ session_start();
 require ('../controller/controllerAuth.php');
 require ('../controller/controllerVille.php');
 //require ('../controller/controllerTrajet.php');
-//require ('../controller/controllerReservation.php');
+require ('../controller/controllerReservation.php');
 require ('../controller/controllerVehicule.php');
 require ('../controller/controllerUtilisateur.php');
 require ('../controller/controllerExaminateur.php');
@@ -49,6 +49,13 @@ switch ($action) {
     case 'vehiculeCreate':
     case 'vehiculeCreated':
         ControllerVehicule::$action($args);
+        break;
+    
+    // === RESERVATION ===
+    case 'reservationMesReservations':
+    case 'reservationCreate':
+    case 'reservationCreated':
+        ControllerReservation::$action($args);
         break;
     
     // === VILLE ===
