@@ -1,10 +1,10 @@
-<!-- ----- debut ModelUtilisateur -->
+<!-- ----- debut ModelReservation -->
 <?php
 require_once 'model.php';
 
 class ModelReservation {
 
-    private $date_depart, $heure_depart, $depart, $destination, $conducteur, $vehicule, $immatriculation;
+    private $date_depart, $heure_depart, $depart, $destination, $conducteur, $vehicule, $immatriculation, $prix;
 
     function getDateDepart() {
         return $this->date_depart;
@@ -33,8 +33,12 @@ class ModelReservation {
     function getImmatriculation() {
         return $this->immatriculation;
     }
+    
+    function getPrix() {
+        return $this->prix;
+    }
 
-    // Permer d´afficher toutes les resrvation d´un passager
+    // Récupère toutes les resrvation d´un passager
     public static function getMesReservations($passager_id) {
         try {
             $database = Model::getInstance();
@@ -68,7 +72,7 @@ class ModelReservation {
         }
     }
 
-    // permet de recuperer tout les trajet actif pour que le passager le trajet qu´il souhaite réserver
+    // Recupere tout les trajet actif pour que le passager puisse sélectionner le trajet qu´il souhaite réserver
     public static function getTrajetsActifs() {
         try {
             $database = Model::getInstance();
@@ -100,28 +104,57 @@ class ModelReservation {
         try {
             $database = Model::getInstance();
 
-            $query = "
-                INSERT INTO reservation(trajet_id, passager_id)
-                VALUES (:trajet_id, :passager_id)
-            ";
-
+            // récupère le prix du trajet
+            $query = "SELECT prix FROM trajet WHERE id = :id";
             $statement = $database->prepare($query);
+            $statement->execute(['id' => $trajet_id]);
+            $trajet = $statement->fetch(PDO::FETCH_ASSOC);
+            $prix = $trajet['prix'];
 
-            return $statement->execute([
-                        'trajet_id' => $trajet_id,
-                        'passager_id' => $passager_id
+            // récupère le solde du passager
+            $query = "SELECT solde FROM utilisateur WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $passager_id]);
+            $user = $statement->fetch(PDO::FETCH_ASSOC);
+            $solde = $user['solde'];
+
+            // vérifie si solde suffisant
+            if ($solde < $prix) {
+                return -2; // code solde insuffisant
+            }
+
+            // débite le passager
+            $query = "UPDATE utilisateur SET solde = solde - :prix WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['prix' => $prix, 'id' => $passager_id]);
+
+            // insère la réservation
+            $query = "SELECT MAX(id) FROM reservation";
+            $statement = $database->query($query);
+            $tuple = $statement->fetch();
+            $id = $tuple[0] + 1;
+
+            $query = "INSERT INTO reservation VALUES (:id, :trajet_id, :passager_id)";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'trajet_id' => $trajet_id,
+                'passager_id' => $passager_id
             ]);
+
+            return $id;
         } catch (PDOException $e) {
-            return false;
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
         }
     }
-    
-    //Permet d´afficher le trajet que le passager vient de reserver
-    public static function getTrajetReserve($trajet_id) {
-    try {
-        $database = Model::getInstance();
 
-        $query = "
+    //Récupere le trajet que le passager vient de reserver
+    public static function getTrajetReserve($trajet_id) {
+        try {
+            $database = Model::getInstance();
+
+            $query = "
         SELECT
             t.date_depart,
             t.heure_depart,
@@ -139,16 +172,30 @@ class ModelReservation {
         WHERE t.id = :id
         ";
 
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $trajet_id]);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelReservation");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+    
+    // Récupére le solde actualsié après transaction pour mettre a jour $SESSION et donc la nav
+    public static function getSolde($passager_id) {
+    try {
+        $database  = Model::getInstance();
+        $query     = "SELECT solde FROM utilisateur WHERE id = :id";
         $statement = $database->prepare($query);
-        $statement->execute(['id' => $trajet_id]);
-
-        return $statement->fetchAll(PDO::FETCH_CLASS, "ModelReservation");
-
+        $statement->execute(['id' => $passager_id]);
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row['solde'];
     } catch (PDOException $e) {
-        printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
         return NULL;
     }
 }
+
 }
 ?>
-<!-- ----- fin ModelUtilisateur -->
+<!-- ----- fin ModelReservation -->

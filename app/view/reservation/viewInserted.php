@@ -1,3 +1,4 @@
+<!-- ----- début viewInserted -->
 <?php
 require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
 ?>
@@ -20,52 +21,38 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
         $trajet = $results[0];
         ?>
 
-        <table class="table table-bordered">
-
-            <tr>
-                <th>Départ</th>
-                <td><?= $trajet->getDepart() ?></td>
-            </tr>
-
-            <tr>
-                <th>Destination</th>
-                <td><?= $trajet->getDestination() ?></td>
-            </tr>
-
-            <tr>
-                <th>Date</th>
-                <td><?= $trajet->getDateDepart() ?></td>
-            </tr>
-
-            <tr>
-                <th>Heure</th>
-                <td><?= $trajet->getHeureDepart() ?></td>
-            </tr>
-
-            <tr>
-                <th>Conducteur</th>
-                <td><?= $trajet->getConducteur() ?></td>
-            </tr>
-
-            <tr>
-                <th>Véhicule</th>
-                <td><?= $trajet->getVehicule() ?></td>
-            </tr>
-
-            <tr>
-                <th>Immatriculation</th>
-                <td><?= $trajet->getImmatriculation() ?></td>
-            </tr>
-
-            <tr>
-                <th>Prix</th>
-                <td><?= $trajet->getPrix() ?> €</td>
-            </tr>
-
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Départ</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Heure</th>
+                    <th scope="col">Conducteur</th>
+                    <th scope="col">Véhicule</th>
+                    <th scope="col">Immatriculation</th>
+                    <th scope="col">Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $element = $results[0];
+                printf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s €</td></tr>",
+                        $element->getDepart(),
+                        $element->getDestination(),
+                        $element->getDateDepart(),
+                        $element->getHeureDepart(),
+                        $element->getConducteur(),
+                        $element->getVehicule(),
+                        $element->getImmatriculation(),
+                        $element->getPrix()
+                );
+                ?>
+            </tbody>
         </table>
 
     </div>
 
     <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
-
 </body>
+<!-- ----- fin viewInserted -->
