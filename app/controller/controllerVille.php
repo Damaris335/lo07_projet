@@ -25,7 +25,8 @@ class ControllerVille {
     public static function villeCreated($args = null) {
         include 'config.php';
         $nom     = htmlspecialchars(trim($_GET['nom']));
-        $results = ModelVille::insert($nom);
+        $id = ModelVille::insert($nom);
+        $results = ModelVille::getById($id); 
         $vue     = $root . '/app/view/ville/viewInserted.php';
         if (DEBUG) echo ("ControllerVille : villeCreated : vue = $vue");
         require($vue);

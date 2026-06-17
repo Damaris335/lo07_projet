@@ -50,6 +50,24 @@ class ModelVille {
             return -1;
         }
     }
+    
+    
+    public static function getById($id) {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from ville where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelVille");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    
+    }
 
 }
 ?>

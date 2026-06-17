@@ -106,7 +106,10 @@ class ModelVehicule {
     public static function getById($id) {
         try {
             $database = Model::getInstance();
-            $query = "select * from vehicule where id = :id";
+            $query = "select v.id, v.marque, v.modele, v.annee, v.immatriculation, v.proprietaire_id, u.prenom, u.nom from vehicule v JOIN utilisateur u ON v.proprietaire_id = u.id where v.id = :id";
+            
+
+            
             $statement = $database->prepare($query);
             $statement->execute([
                 'id' => $id
@@ -123,7 +126,7 @@ class ModelVehicule {
     public static function getAllConducteurs() {
         try {
             $database  = Model::getInstance();
-            $query     = "SELECT * FROM utilisateur WHERE role = 'conducteur'";
+            $query     = "SELECT * FROM utilisateur WHERE role = 'conducteur' ";
             $statement = $database->prepare($query);
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_OBJ);

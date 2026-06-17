@@ -9,15 +9,15 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
       include $root . '/app/view/fragment/fragmentBlablacarMenu.php';
       include $root . '/app/view/fragment/fragmentBlablacarJumbotron.html';
     ?> 
-      <h2>Formulaire de création d´un nouveau véhicule</h2>
+      <h2>Formulaire de création d'un nouveau véhicule</h2>
     <form role="form" method='get' action='router2.php'>
       <div class="form-group">
         <input type="hidden" name="action" value="vehiculeCreated">   
-        <label class='w-25' for="id">marque : </label><input type="text" name='marque' size='75'> <br/>                          
-        <label class='w-25' for="id">modele : </label><input type="text" name='modele' size='75'> <br/> 
-        <label class='w-25' for="id">année : </label><input type="text" name='annee' size='75'> <br/>    
-        <label class='w-25' for="id">immatriculation : </label><input type="text" name='immatriculation' size='75'> <br/> 
-        <label class='w-25' for="id">propriétaireé : </label>
+        <label class='w-25' for="id">Marque : </label><input type="text" name='marque' size='75'> <br/>                          
+        <label class='w-25' for="id">Modèle : </label><input type="text" name='modele' size='75'> <br/> 
+        <label class='w-25' for="id">Année : </label><input type="text" name='annee' size='75'> <br/>    
+        <label class='w-25' for="id">Immatriculation : </label><input type="text" name='immatriculation' size='75'> <br/> 
+        <label class='w-25' for="id">Propriétaire : </label>
         <select name="proprietaire_id">
           <?php foreach ($conducteurs as $c): ?>
             <option value="<?php echo $c->id; ?>">

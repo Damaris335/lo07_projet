@@ -53,6 +53,8 @@ switch ($action) {
     
     // === VILLE ===
     case 'villeReadAll':
+    case 'villeCreate':
+    case 'villeCreated':
         ControllerVille::$action($args);
         break;
 
