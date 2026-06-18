@@ -3,7 +3,7 @@
 session_start(); 
 require ('../controller/controllerAuth.php');
 require ('../controller/controllerVille.php');
-//require ('../controller/controllerTrajet.php');
+require ('../controller/controllerTrajet.php');
 require ('../controller/controllerReservation.php');
 require ('../controller/controllerVehicule.php');
 require ('../controller/controllerUtilisateur.php');
@@ -41,11 +41,13 @@ switch ($action) {
     case 'trajetCreated':
     case 'trajetDelete':
     case 'trajetDeleted':
+    case 'trajetMesTrajets':
         ControllerTrajet::$action($args);
         break;
     
     // === VÉHICULE ===
     case 'vehiculeReadAll':
+    case 'vehiculeMesVehicules':
     case 'vehiculeCreate':
     case 'vehiculeCreated':
         ControllerVehicule::$action($args);

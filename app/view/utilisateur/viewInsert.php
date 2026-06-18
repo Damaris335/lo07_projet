@@ -15,9 +15,9 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
         <input type="hidden" name="action" value="utilisateurCreated">
         
         <input type="hidden" name="role"   value="<?php echo $target; ?>">     
-        <label class='w-25' for="id">nom : </label><input type="text" name='nom' size='75'> <br/>                          
-        <label class='w-25' for="id">prenom : </label><input type="text" name='prenom' size='75'> <br/> 
-        <label class='w-25' for="id">solde : </label><input type="text" name='solde' size='75'> <br/>          
+        <label class='w-25' for="id">Nom : </label><input type="text" name='nom' size='75'> <br/>                          
+        <label class='w-25' for="id">Prénom : </label><input type="text" name='prenom' size='75'> <br/> 
+        <label class='w-25' for="id">Solde : </label><input type="text" name='solde' size='75'> <br/>          
       </div>
       <p/>
        <br/> 
