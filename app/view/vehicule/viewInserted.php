@@ -33,6 +33,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                 ?>
             </tbody>
         </table>
+  </div>
 </body>
     <?php
     include $root . '/app/view/fragment/fragmentBlablacarFooter.html';

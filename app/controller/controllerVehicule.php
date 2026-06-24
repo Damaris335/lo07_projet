@@ -16,7 +16,7 @@ class ControllerVehicule {
 
     public static function vehiculeCreate($args) {
         include 'config.php';
-        $conducteurs = ModelVehicule::getAllConducteurs();
+        $conducteurs = ModelUtilisateur::getAllConducteurs();
         $vue = $root . '/app/view/vehicule/viewInsert.php';
         require($vue);
     }

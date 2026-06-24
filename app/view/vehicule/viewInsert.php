@@ -17,25 +17,17 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                 <label class='w-25' for="id">Modèle : </label><input type="text" name='modele' size='75'> <br/> 
                 <label class='w-25' for="id">Année : </label><input type="text" name='annee' size='75'> <br/>    
                 <label class='w-25' for="id">Immatriculation : </label><input type="text" name='immatriculation' size='75'> <br/> 
-                <label class='w-25' for="id">Propriétaire : </label>
-                <select class="form-control" name="trajet_id">
-
+                <label class='w-25' for="id">Propriétaire : </label><select name="proprietaire_id" required>
+                    <option value="" selected disabled>Sélectionnez un propriétaire</option>
                     <?php
-                    foreach ($results as $trajet) {
-                        printf(
-                                "<option value='%s'>%s --> %s le %s à %s (%s €)</option>",
-                                $trajet['id'],
-                                $trajet['depart'],
-                                $trajet['arrivee'],
-                                $trajet['date_depart'],
-                                $trajet['heure_depart'],
-                                $trajet['prix']
-                        );
+                    foreach ($conducteurs as $conducteur) {
+                        echo "<option value='{$conducteur->getId()}'>"
+                        . $conducteur->getNom() . " "
+                        . $conducteur->getPrenom() . " "
+                        . "</option>";
                     }
                     ?>
-
-                </select>
-
+                </select><br/>
                 <br/>
             </div>
             <p/>

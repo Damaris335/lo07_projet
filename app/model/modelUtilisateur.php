@@ -96,6 +96,8 @@ class ModelUtilisateur {
         }
     }
 
+    
+    
     // --- Insère un nouvel utilisateur (conducteur ou passager) (admin : A2, A3)
     // Le login est généré automatiquement : prenomnom en minuscules sans espaces
     // Le password par défaut est "secret"

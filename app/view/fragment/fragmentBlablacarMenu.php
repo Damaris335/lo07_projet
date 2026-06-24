@@ -101,7 +101,7 @@ $role    = $_SESSION['role']     ?? '';
           <a class="nav-link dropdown-toggle text-white" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">Se connecter</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router2.php?action=authLogin">Login</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=authLogin">Connexion</a></li>
             <li><a class="dropdown-item" href="router2.php?action=authLogout">Déconnexion</a></li>
           </ul>
         </li>

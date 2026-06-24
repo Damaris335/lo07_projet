@@ -121,18 +121,7 @@ class ModelVehicule {
     
     }
 
-    public static function getAllConducteurs() {
-        try {
-            $database  = Model::getInstance();
-            $query     = "SELECT * FROM utilisateur WHERE role = 'conducteur' ";
-            $statement = $database->prepare($query);
-            $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_OBJ);
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
-        }
-    }
+
 
 }
 ?>
