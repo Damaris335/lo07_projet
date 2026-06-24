@@ -33,7 +33,7 @@ class ModelReservation {
     function getImmatriculation() {
         return $this->immatriculation;
     }
-    
+
     function getPrix() {
         return $this->prix;
     }
@@ -181,21 +181,80 @@ class ModelReservation {
             return NULL;
         }
     }
-    
+
     // Récupére le solde actualsié après transaction pour mettre a jour $SESSION et donc la nav
     public static function getSolde($passager_id) {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT solde FROM utilisateur WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $passager_id]);
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            return $row['solde'];
+        } catch (PDOException $e) {
+            return NULL;
+        }
+    }
+
+    public static function insertRandom() {
+        try {
+            $database = Model::getInstance();
+
+            $trajets = $database->query("SELECT id FROM trajet")->fetchAll(PDO::FETCH_COLUMN);
+            $passagers = $database->query("SELECT id FROM utilisateur WHERE role = 'passager'")->fetchAll(PDO::FETCH_COLUMN);
+
+            $inserted = 0;
+            $tentatives = 0;
+
+            while ($inserted < 10 && $tentatives < 50) {
+                $trajet_id = $trajets[array_rand($trajets)];
+                $passager_id = $passagers[array_rand($passagers)];
+
+                // Vérifie que la combinaison n'existe pas déjà
+                $check = $database->prepare("SELECT COUNT(*) FROM reservation WHERE trajet_id = :t AND passager_id = :p");
+                $check->execute(['t' => $trajet_id, 'p' => $passager_id]);
+                if ($check->fetchColumn() > 0) {
+                    $tentatives++;
+                    continue;
+                }
+
+                $result = self::insert($trajet_id, $passager_id);
+
+                // -2 = solde insuffisant, -1 = erreur SQL, sinon ok
+                if ($result > 0)
+                    $inserted++;
+                $tentatives++;
+            }
+
+            return $inserted;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
+    
+    public static function getLastTen() {
     try {
-        $database  = Model::getInstance();
-        $query     = "SELECT solde FROM utilisateur WHERE id = :id";
+        $database = Model::getInstance();
+        $query = "
+            SELECT vd.nom AS ville_depart, va.nom AS ville_arrivee,
+                   u.nom, u.prenom
+            FROM reservation r
+            JOIN trajet t ON r.trajet_id = t.id
+            JOIN ville vd ON t.ville_depart = vd.id
+            JOIN ville va ON t.ville_arrivee = va.id
+            JOIN utilisateur u ON r.passager_id = u.id
+            ORDER BY r.id DESC
+            LIMIT 10
+        ";
         $statement = $database->prepare($query);
-        $statement->execute(['id' => $passager_id]);
-        $row = $statement->fetch(PDO::FETCH_ASSOC);
-        return $row['solde'];
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
+        printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
         return NULL;
     }
 }
-
 }
 ?>
 <!-- ----- fin ModelReservation -->

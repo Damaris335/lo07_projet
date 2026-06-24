@@ -84,7 +84,8 @@ switch ($action) {
     
     // === EXAMINATEUR ===
     case 'examinateurSuperglobales':
-        ControllerExam::$action($args);
+    case 'examinateurReservations':
+        ControllerExaminateur::$action($args);
         break;
 
     // === ACCUEIL ===
