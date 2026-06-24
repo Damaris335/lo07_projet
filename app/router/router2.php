@@ -44,6 +44,8 @@ switch ($action) {
     case 'trajetMesTrajets':
     case 'trajetPassagers':
     case 'trajetPassagersActif':
+    case 'trajetCloturables':
+    case 'trajetCloturer':
         ControllerTrajet::$action($args);
         break;
     

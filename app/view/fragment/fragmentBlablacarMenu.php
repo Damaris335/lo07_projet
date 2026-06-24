@@ -60,7 +60,7 @@ $role    = $_SESSION['role']     ?? '';
             <li><a class="dropdown-item" href="router2.php?action=trajetCreate">Ajout d'un trajet</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="router2.php?action=trajetPassagersActif">Liste des passagers de l'un de mes trajets actifs</a></li>
-            <li><a class="dropdown-item" href="router2.php?action=trajetCloturer">Cloturer l'un de mes trajets actifs</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=trajetCloturables">Cloturer l'un de mes trajets actifs</a></li>
           </ul>
         </li>
 

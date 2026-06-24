@@ -200,28 +200,51 @@ class ModelTrajet {
     }
     
     public static function getPassagersTrajet($trajet_id) {
-    try {
-        $database = Model::getInstance();
+        try {
+            $database = Model::getInstance();
 
-        $query = "
-            SELECT u.nom,
-                   u.prenom,
-                   u.login
-            FROM reservation r
-            JOIN utilisateur u ON r.passager_id = u.id
-            WHERE r.trajet_id = :id
-            ORDER BY u.nom, u.prenom
-        ";
+            $query = "
+                SELECT u.nom,
+                       u.prenom,
+                       u.login
+                FROM reservation r
+                JOIN utilisateur u ON r.passager_id = u.id
+                WHERE r.trajet_id = :id
+                ORDER BY u.nom, u.prenom
+            ";
 
-        $statement = $database->prepare($query);
-        $statement->execute(['id' => $trajet_id]);
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $trajet_id]);
 
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+            return $statement->fetchAll(PDO::FETCH_OBJ);
 
-    } catch (PDOException $e) {
-        return NULL;
+        } catch (PDOException $e) {
+            return NULL;
+        }
     }
-}
+    
+    public static function cloturerTrajet($trajet_id) {
+        try {
+            $database = Model::getInstance();
+
+            $query = "
+                UPDATE trajet
+                SET statut = 'passif'
+                WHERE id = :id
+            ";
+
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $trajet_id
+            ]);
+
+            return true;
+
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return false;
+        }
+    }
 
 }
 ?>

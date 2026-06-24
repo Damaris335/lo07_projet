@@ -69,6 +69,29 @@ class ControllerTrajet {
         require($vue);
     }
     
+    public static function trajetCloturables($args = null) {
+        include 'config.php';
+
+        $conducteur_id = $_SESSION['login_id'];
+
+        $trajets = ModelTrajet::getTrajetsActifs($conducteur_id);
+
+        $vue = $root . '/app/view/trajet/viewCloturerTrajet.php';
+        require($vue);
+    }
+    
+    public static function trajetCloturer($args = null) {
+        include 'config.php';
+
+        $trajet_id = $_GET['trajet_id'];
+
+        ModelTrajet::cloturerTrajet($trajet_id);
+
+        $results = ModelTrajet::getById($trajet_id);
+
+        $vue = $root . '/app/view/trajet/viewTrajetCloture.php';
+        require($vue);
+    }
 }
 ?>
 <!-- ----- fin ControllerTrajet-->
