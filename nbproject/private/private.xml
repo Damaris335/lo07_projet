@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/router/router2.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/reservation/viewPassagerReservations.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerReservation.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/model/modelReservation.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerVehicule.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/reservation/viewInsert.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/reservation/viewInserted.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/vehicule/viewInsert.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/model/modelVehicule.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
