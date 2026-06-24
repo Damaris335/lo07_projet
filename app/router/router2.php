@@ -8,6 +8,7 @@ require ('../controller/controllerReservation.php');
 require ('../controller/controllerVehicule.php');
 require ('../controller/controllerUtilisateur.php');
 require ('../controller/controllerExaminateur.php');
+require ('../controller/controllerFonctionnalite.php');
 
 
 parse_str($_SERVER['QUERY_STRING'], $param);
@@ -86,6 +87,11 @@ switch ($action) {
     case 'examinateurSuperglobales':
     case 'examinateurReservations':
         ControllerExaminateur::$action($args);
+        break;
+    
+    // === INNOVATION : FONCTIONNALITE ===
+    case 'blablaDor':
+        controllerFonctionnalite::$action($args);
         break;
 
     // === ACCUEIL ===

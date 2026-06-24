@@ -81,7 +81,7 @@ $role    = $_SESSION['role']     ?? '';
           <a class="nav-link dropdown-toggle text-white" role="button"
              data-bs-toggle="dropdown" aria-expanded="false">Innovations</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="router2.php?action=innovationData">Proposez une fonctionnalité originale</a></li>
+            <li><a class="dropdown-item" href="router2.php?action=blablaDor">Proposez une fonctionnalité originale</a></li>
             <li><a class="dropdown-item" href="router2.php?action=innovationMVC">Proposez une amélioration du code MVC</a></li>
           </ul>
         </li>
