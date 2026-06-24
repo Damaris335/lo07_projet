@@ -72,16 +72,3 @@ class ControllerTrajet {
 }
 ?>
 <!-- ----- fin ControllerTrajet-->
-
-
-public static function trajetPassagers($args = null) {
-    include 'config.php';
-
-    $trajet_id = $_GET['trajet_id'];
-
-    $trajet = ModelTrajet::getTrajetById($trajet_id);
-    $results = ModelT$trajetrajet::getPassagersTrajet($trajet_id);
-
-    $vue = $root . '/app/view/trajet/viewPassagersActifs.php';
-    require($vue);
-}
