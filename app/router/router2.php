@@ -42,6 +42,8 @@ switch ($action) {
     case 'trajetDelete':
     case 'trajetDeleted':
     case 'trajetMesTrajets':
+    case 'trajetPassagers':
+    case 'trajetPassagersActif':
         ControllerTrajet::$action($args);
         break;
     
@@ -57,6 +59,8 @@ switch ($action) {
     case 'reservationMesReservations':
     case 'reservationCreate':
     case 'reservationCreated':
+    case 'reservationDelete':
+    case 'reservationDeleted':
         ControllerReservation::$action($args);
         break;
     
@@ -67,14 +71,6 @@ switch ($action) {
         ControllerVille::$action($args);
         break;
 
-    // === RESERVATIONS ===
-    case 'reservationCreate':
-    case 'reservationCreated':
-    case 'reservationDelete':
-    case 'reservationDeleted':
-    case 'reservationMes':
-        ControllerReservation::$action($args);
-        break;
 
     // === UTILISATEUR ===
     case 'utilisateurProfil':

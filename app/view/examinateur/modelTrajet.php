@@ -170,6 +170,59 @@ class ModelTrajet {
             return NULL;
         }
     }
+    
+    public static function getTrajetsActifs($conducteur_id) {
+    try {
+        $database = Model::getInstance();
+
+        $query = "
+            SELECT t.id,
+                   vd.nom AS ville_depart,
+                   va.nom AS ville_arrivee,
+                   t.date_depart,
+                   t.heure_depart
+            FROM trajet t
+            JOIN ville vd ON t.ville_depart = vd.id
+            JOIN ville va ON t.ville_arrivee = va.id
+            WHERE t.conducteur_id = :id
+            AND t.statut = 'actif'
+            ORDER BY t.date_depart
+        ";
+
+        $statement = $database->prepare($query);
+        $statement->execute(['id' => $conducteur_id]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+        return NULL;
+    }
+    }
+    
+    public static function getPassagersTrajet($trajet_id) {
+    try {
+        $database = Model::getInstance();
+
+        $query = "
+            SELECT u.nom,
+                   u.prenom,
+                   u.login
+            FROM reservation r
+            JOIN utilisateur u ON r.passager_id = u.id
+            WHERE r.trajet_id = :id
+            ORDER BY u.nom, u.prenom
+        ";
+
+        $statement = $database->prepare($query);
+        $statement->execute(['id' => $trajet_id]);
+
+        return $statement->fetchAll(PDO::FETCH_OBJ);
+
+    } catch (PDOException $e) {
+        return NULL;
+    }
+}
+
 }
 ?>
 <!-- ----- fin ModelTrajet -->

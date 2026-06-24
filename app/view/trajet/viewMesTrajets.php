@@ -1,4 +1,4 @@
-<!-- ----- début viewMesVehicules -->
+<!-- ----- début viewMesTrajets -->
 <?php
 require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
 ?>
@@ -35,4 +35,4 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
     </div>
     <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
 </body>
-<!-- ----- fin viewMesVehicules -->
+<!-- ----- fin viewMesTrajets -->

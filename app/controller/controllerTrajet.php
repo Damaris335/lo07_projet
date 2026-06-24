@@ -43,7 +43,45 @@ class ControllerTrajet {
         $vue = $root . '/app/view/trajet/viewInserted.php';
         require($vue);
     }
+   
+    
+    // Affiche liste des trajets actifs du conducteur
+    public static function trajetPassagersActif($args = null) {
+        include 'config.php';
+
+        $conducteur_id = $_SESSION['login_id'];
+
+        $trajets = ModelTrajet::getTrajetsActifs($conducteur_id);
+
+        $vue = $root . '/app/view/trajet/viewTrajetsActifs.php';
+        require($vue);
+    }
+ 
+    // Affiche passagers du trajet sélectionné par le conducteur 
+    public static function trajetPassagers($args = null) {
+        include 'config.php';
+
+        $trajet_id = $_GET['trajet_id'];
+
+        $results = ModelTrajet::getPassagersTrajet($trajet_id);
+
+        $vue = $root . '/app/view/trajet/viewPassagersActifs.php';
+        require($vue);
+    }
     
 }
 ?>
 <!-- ----- fin ControllerTrajet-->
+
+
+public static function trajetPassagers($args = null) {
+    include 'config.php';
+
+    $trajet_id = $_GET['trajet_id'];
+
+    $trajet = ModelTrajet::getTrajetById($trajet_id);
+    $results = ModelT$trajetrajet::getPassagersTrajet($trajet_id);
+
+    $vue = $root . '/app/view/trajet/viewPassagersActifs.php';
+    require($vue);
+}
