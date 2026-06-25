@@ -128,6 +128,17 @@ class ModelReservation {
             $statement = $database->prepare($query);
             $statement->execute(['prix' => $prix, 'id' => $passager_id]);
 
+            // crédite le conducteur
+            $query = "SELECT conducteur_id FROM trajet WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $trajet_id]);
+            $trajet2 = $statement->fetch(PDO::FETCH_ASSOC);
+            $conducteur_id = $trajet2['conducteur_id'];
+
+            $query = "UPDATE utilisateur SET solde = solde + :prix WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['prix' => $prix, 'id' => $conducteur_id]);
+
             // insère la réservation
             $query = "SELECT MAX(id) FROM reservation";
             $statement = $database->query($query);
@@ -232,11 +243,11 @@ class ModelReservation {
             return -1;
         }
     }
-    
+
     public static function getLastTen() {
-    try {
-        $database = Model::getInstance();
-        $query = "
+        try {
+            $database = Model::getInstance();
+            $query = "
             SELECT vd.nom AS ville_depart, va.nom AS ville_arrivee,
                    u.nom, u.prenom
             FROM reservation r
@@ -247,14 +258,14 @@ class ModelReservation {
             ORDER BY r.id DESC
             LIMIT 10
         ";
-        $statement = $database->prepare($query);
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-        return NULL;
+            $statement = $database->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
     }
-}
 }
 ?>
 <!-- ----- fin ModelReservation -->
