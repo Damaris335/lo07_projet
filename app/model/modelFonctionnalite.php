@@ -4,9 +4,7 @@ require_once 'model.php';
 
 class ModelFonctionnalite {
     
-    // S'il y a égalité, c'est le plus petit id qui l'emporte - nous favorisons les plus anciens BlaBlaVoyageurs
-
-
+    // --- S'il y a égalité, c'est le plus petit id qui l'emporte - nous favorisons les plus anciens BlaBlaVoyageurs
     public static function conducteurMaxTrajets() {
         $database = Model::getInstance();
 
@@ -23,7 +21,7 @@ class ModelFonctionnalite {
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    // Passager ayant le plus de réservations
+    // --- Passager ayant le plus de réservations
     public static function passagerMaxResa() {
         $database = Model::getInstance();
 
@@ -40,6 +38,7 @@ class ModelFonctionnalite {
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
+    // --- Trajet le plus utilisé
     public static function trajetPopulaire() {
         $database = Model::getInstance();
 
@@ -60,6 +59,7 @@ class ModelFonctionnalite {
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
+    // --- Maque du plus grand nombre de voitures
     public static function marquePreferee() {
         $database = Model::getInstance();
 

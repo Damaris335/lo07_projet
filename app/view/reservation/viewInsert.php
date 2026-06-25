@@ -12,12 +12,19 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
 
         <h2>Sélectionnez un trajet actif :</h2>
 
+        <?php if (isset($erreur) && $erreur): ?>
+            <div class="alert alert-danger">
+                <?php echo $erreur; ?>
+            </div>
+        <?php endif; ?>
+
+
         <form role="form" method='get' action='router2.php'>
-            
+
             <div class="form-group">
-                
+
                 <input type="hidden" name="action" value="reservationCreated">   
-                
+
                 <select class="form-control" name="trajet_id" id="trajet_id">
                     <?php
                     foreach ($results as $trajet) {
@@ -28,13 +35,13 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                     }
                     ?>
                 </select><br/>
-                
+
             </div><br> 
-            
+
             <button class="btn btn-primary" type="submit">Réserver</button>
-            
+
         </form>
-        
+
     </div>
     <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
 </body>

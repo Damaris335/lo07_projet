@@ -72,7 +72,7 @@ class ModelReservation {
         }
     }
 
-    // Récuperer tous les trajets actifs pour que le passager puisse sélectionner le trajet qu´il souhaite réserver
+    // Récuperer tous les trajets actifs
     public static function getTrajetsActifs() {
         try {
             $database = Model::getInstance();
@@ -99,7 +99,7 @@ class ModelReservation {
         }
     }
 
-    // --- Permettre de créer une nouvelle reservation
+    // --- Insérer nouvelle reservation
     public static function insert($trajet_id, $passager_id) {
         try {
             $database = Model::getInstance();
@@ -124,7 +124,7 @@ class ModelReservation {
         }
     }
 
-    // --- Récuperer le trajet que le passager vient de reserver
+    // --- Récuperer trajet 
     public static function getTrajetReserve($trajet_id) {
         try {
             $database = Model::getInstance();
@@ -157,7 +157,7 @@ class ModelReservation {
         }
     }
 
-
+    // --- Insérer 10 réservations aléatoires
     public static function insertRandom() {
         try {
             $database = Model::getInstance();
@@ -195,6 +195,7 @@ class ModelReservation {
         }
     }
 
+    // --- Récuperer les 10 dernieres réservations
     public static function getLastTen() {
         try {
             $database = Model::getInstance();

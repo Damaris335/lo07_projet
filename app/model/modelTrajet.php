@@ -202,7 +202,7 @@ class ModelTrajet {
         }
     }
 
-    // --- Récuperer passagers d
+    // --- Récuperer passagers d´un trajet
     public static function getPassagersTrajet($trajet_id) {
         try {
             $database = Model::getInstance();
@@ -261,6 +261,21 @@ class ModelTrajet {
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return false;
+        }
+    }
+
+    // --- récuperer le prix d´un trajet 
+    public static function getPrixById($trajet_id) {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT prix FROM trajet WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $trajet_id]);
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            return $row['prix'];
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
         }
     }
 }

@@ -1,9 +1,11 @@
+<!-- ----- debut controllerFonctionnalite -->
 <?php
 
 require_once '../model/modelFonctionnalite.php';
 
 class ControllerFonctionnalite {
 
+    // --- Fait le classement
     public static function blablaDor($args = null) {
 
         include 'config.php';
@@ -18,3 +20,4 @@ class ControllerFonctionnalite {
     }
 }
 ?>
+<!-- ----- fin controllerFonctionnalite -->

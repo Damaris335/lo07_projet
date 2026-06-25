@@ -158,20 +158,6 @@ class ModelUtilisateur {
         }
     }
     
-    // --- Mettre a jour le $_SESSION solde apres cloture d
-    public static function getSoldeById($id) {
-    try {
-        $database = Model::getInstance();
-        $query = "SELECT solde FROM utilisateur WHERE id = :id";
-        $statement = $database->prepare($query);
-        $statement->execute(['id' => $id]);
-        $row = $statement->fetch(PDO::FETCH_ASSOC);
-        return $row['solde'];
-    } catch (PDOException $e) {
-        printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-        return NULL;
-    }
-}
 }
 ?>
 <!-- ----- fin ModelUtilisateur -->

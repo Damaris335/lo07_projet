@@ -1,6 +1,7 @@
 <!-- ----- debut controllerReservation  -->
 <?php
 require_once '../model/modelReservation.php';
+require_once '../model/modelTrajet.php';
 
 class ControllerReservation {
 
@@ -30,6 +31,19 @@ class ControllerReservation {
         include 'config.php';
         $trajet_id = $_GET['trajet_id'];
         $passager_id = $_SESSION['login_id'];
+
+        $solde_passager = $_SESSION['solde'];
+        $prix = ModelTrajet::getPrixById($trajet_id);
+
+        // Erreur solde inferieur au prix 
+        if  ((float)$solde_passager < (float)$prix) {
+            $erreur = "Vous n'avez pas assez d'argent pour ce trajet.";
+            $results = ModelReservation::getTrajetsActifs();
+            $vue = $root . '/app/view/reservation/viewInsert.php';
+            require($vue);
+            return;
+        }
+
 
         $idReservation = ModelReservation::insert($trajet_id, $passager_id);
 

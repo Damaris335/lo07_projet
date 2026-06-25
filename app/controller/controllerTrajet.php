@@ -33,7 +33,9 @@ class ControllerTrajet {
     // --- Ajout trajet et appel validation
     public static function trajetCreated($args) {
         include 'config.php';
+
         $conducteur_id = $_SESSION['login_id'];
+
         $id = ModelTrajet::insert(
                 htmlspecialchars($_GET['ville_depart']),
                 htmlspecialchars($_GET['ville_arrivee']),
@@ -47,8 +49,6 @@ class ControllerTrajet {
         $results = ModelTrajet::getById($id);
 
         $vue = $root . '/app/view/trajet/viewInserted.php';
-        if (DEBUG)
-            echo ("ControllerTrajet : trajetCreated : vue = $vue");
         require($vue);
     }
 
@@ -105,7 +105,7 @@ class ControllerTrajet {
         $utilisateur = ModelUtilisateur::getById($_SESSION['login_id'])[0];
 
         $_SESSION['solde'] = $utilisateur->getSolde();
-        
+
         $results = ModelTrajet::getById($trajet_id);
 
         $vue = $root . '/app/view/trajet/viewTrajetCloture.php';
