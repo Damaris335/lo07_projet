@@ -102,7 +102,9 @@ class ControllerTrajet {
 
         ModelTrajet::cloturerTrajet($trajet_id);
 
-        $_SESSION['solde'] = ModelUtilisateur::getSoldeById($_SESSION['login_id']);
+        $utilisateur = ModelUtilisateur::getById($_SESSION['login_id'])[0];
+
+        $_SESSION['solde'] = $utilisateur->getSolde();
         
         $results = ModelTrajet::getById($trajet_id);
 
