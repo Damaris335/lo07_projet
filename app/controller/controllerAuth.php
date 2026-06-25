@@ -16,7 +16,7 @@ class ControllerAuth {
     public static function authLogin($args = null) {
         include 'config.php';
         $erreur = null;
-        $vue = $root . 'app/view/login/viewLogin.php';
+        $vue = $root . '/app/view/login/viewLogin.php';
         if (DEBUG) echo ("controllerAuth : authLogin : vue = $vue");
         require($vue);
     }
@@ -50,6 +50,8 @@ class ControllerAuth {
         $_SESSION['role']     = $utilisateur->getRole();
         $_SESSION['solde']    = $utilisateur->getSolde();
  
+        setcookie("remember_login", $utilisateur->getLogin(), time() + 604800); // 7 jours
+        
         $vue = $root . '/app/view/viewBlablacarAccueil.php';
         if (DEBUG)
             echo ("ControllerAuth : authLogout : vue = $vue");
@@ -59,6 +61,7 @@ class ControllerAuth {
 
     // --- Déconnexion
     public static function authLogout($args = null) {
+        include 'config.php';
         $_SESSION['login_id'] = -1;
         session_unset();
         session_destroy();

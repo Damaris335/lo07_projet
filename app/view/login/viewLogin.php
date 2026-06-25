@@ -31,7 +31,8 @@
                             <div class="mb-3">
                                 <label for="login" class="form-label">Login</label>
                                 <input type="text" class="form-control" id="login" name="login"
-                                       placeholder="Votre login" autofocus required>
+                                       placeholder="Votre login" autofocus required
+                                       value="<?= isset($_COOKIE['remember_login']) ? $_COOKIE['remember_login'] : '' ?>">
                             </div>
 
                             <div class="mb-3">
