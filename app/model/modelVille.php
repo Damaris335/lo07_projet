@@ -13,11 +13,10 @@ class ModelVille {
         }
     }
 
-    // --- Getters
     function getId()  { return $this->id; }
     function getNom() { return $this->nom; }
 
-    // --- A6 : Liste de toutes les villes
+    // --- Liste de toutes les villes
     public static function getAll() {
         try {
             $database  = Model::getInstance();
@@ -31,7 +30,7 @@ class ModelVille {
         }
     }
 
-    // --- A7 : Insertion d'une ville
+    // --- Insertion d'une ville
     public static function insert($nom) {
         try {
             $database  = Model::getInstance();
@@ -51,7 +50,7 @@ class ModelVille {
         }
     }
     
-    
+    // --- Récupère une ville par son id
     public static function getById($id) {
         try {
             $database = Model::getInstance();

@@ -4,7 +4,7 @@ require_once '../model/modelVille.php';
 
 class ControllerVille {
 
-    // --- A6 : Liste de toutes les villes
+    // --- Liste de toutes les villes
     public static function villeReadAll($args = null) {
         include 'config.php';
         $results = ModelVille::getAll();
@@ -13,7 +13,7 @@ class ControllerVille {
         require($vue);
     }
 
-    // --- A7 : Formulaire ajout ville
+    // --- Appel formulaire ajout ville
     public static function villeCreate($args = null) {
         include 'config.php';
         $vue = $root . '/app/view/ville/viewInsert.php';
@@ -21,11 +21,11 @@ class ControllerVille {
         require($vue);
     }
 
-    // --- A7 : Traitement formulaire ajout ville
+    // --- Ajout ville et appel validation
     public static function villeCreated($args = null) {
         include 'config.php';
         $nom     = htmlspecialchars(trim($_GET['nom']));
-        // on vérifie avant d'insérer
+        
         if (empty($nom)) {
             $erreur = "Veuillez remplir tous les champs.";
             $vue = $root . '/app/view/ville/viewInsert.php';

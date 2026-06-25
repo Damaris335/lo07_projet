@@ -70,7 +70,7 @@ class ModelVehicule {
         }
     }
 
-    // --- Véhicules d'un conducteur connecté
+    // --- Véhicules d'un conducteur 
     public static function getMesVehicules($conducteur_id) {
         try {
             $database = Model::getInstance();
@@ -84,20 +84,7 @@ class ModelVehicule {
         }
     }
 
-    // --- Véhicules d'un conducteur pour un select (formulaire ajout trajet)
-    public static function getVehiculesConducteur($conducteur_id) {
-        try {
-            $database = Model::getInstance();
-            $query = "SELECT * FROM vehicule WHERE proprietaire_id = :id";
-            $statement = $database->prepare($query);
-            $statement->execute(['id' => $conducteur_id]);
-            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelVehicule");
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
-        }
-    }
-
+    // --- Insère un nouveau vehicule
     public static function insert($marque, $modele, $annee, $immatriculation, $proprietaire_id) {
         try {
             $database = Model::getInstance();
@@ -122,7 +109,8 @@ class ModelVehicule {
             return -1;
         }
     }
-
+    
+    // --- Récupère un vehicule par son id
     public static function getById($id) {
         try {
             $database = Model::getInstance();

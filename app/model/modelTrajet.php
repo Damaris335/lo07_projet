@@ -66,6 +66,7 @@ class ModelTrajet {
         return $this->vehicule;
     }
 
+    // --- Récupèrer les trajets d´un conducteur
     public static function getMesTrajets($conducteur_id) {
         try {
             $database = Model::getInstance();
@@ -96,6 +97,7 @@ class ModelTrajet {
         }
     }
 
+    // --- Inserer trajet
     public static function insert($ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart) {
         try {
             $database = Model::getInstance();
@@ -140,6 +142,7 @@ class ModelTrajet {
         }
     }
 
+    // --- Récuperer un trajet
     public static function getById($id) {
         try {
             $database = Model::getInstance();
@@ -171,6 +174,7 @@ class ModelTrajet {
         }
     }
 
+    // --- Récuperer trajets actifs
     public static function getTrajetsActifs($conducteur_id) {
         try {
             $database = Model::getInstance();
@@ -198,6 +202,7 @@ class ModelTrajet {
         }
     }
 
+    // --- Récuperer passagers d
     public static function getPassagersTrajet($trajet_id) {
         try {
             $database = Model::getInstance();
@@ -221,11 +226,11 @@ class ModelTrajet {
         }
     }
 
+    // --- Cloturer un trajet
     public static function cloturerTrajet($trajet_id) {
         try {
             $database = Model::getInstance();
 
-            // récupère le prix et le conducteur du trajet
             $query = "SELECT prix, conducteur_id FROM trajet WHERE id = :id";
             $statement = $database->prepare($query);
             $statement->execute(['id' => $trajet_id]);
@@ -233,13 +238,11 @@ class ModelTrajet {
             $prix = $trajet['prix'];
             $conducteur_id = $trajet['conducteur_id'];
 
-            // récupère tous les passagers du trajet
             $query = "SELECT passager_id FROM reservation WHERE trajet_id = :id";
             $statement = $database->prepare($query);
             $statement->execute(['id' => $trajet_id]);
             $passagers = $statement->fetchAll(PDO::FETCH_COLUMN);
 
-            // débite chaque passager et crédite le conducteur
             foreach ($passagers as $passager_id) {
                 $query = "UPDATE utilisateur SET solde = solde - :prix WHERE id = :id";
                 $statement = $database->prepare($query);
@@ -250,7 +253,6 @@ class ModelTrajet {
                 $statement->execute(['prix' => $prix, 'id' => $conducteur_id]);
             }
 
-            // clôture le trajet
             $query = "UPDATE trajet SET statut = 'passif' WHERE id = :id";
             $statement = $database->prepare($query);
             $statement->execute(['id' => $trajet_id]);

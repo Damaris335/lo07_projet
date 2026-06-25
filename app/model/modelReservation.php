@@ -38,7 +38,7 @@ class ModelReservation {
         return $this->prix;
     }
 
-    // Récupère toutes les resrvation d´un passager
+    // --- Récupèrer toutes les reservations d´un passager
     public static function getMesReservations($passager_id) {
         try {
             $database = Model::getInstance();
@@ -72,7 +72,7 @@ class ModelReservation {
         }
     }
 
-    // Recupere tout les trajet actif pour que le passager puisse sélectionner le trajet qu´il souhaite réserver
+    // Récuperer tous les trajets actifs pour que le passager puisse sélectionner le trajet qu´il souhaite réserver
     public static function getTrajetsActifs() {
         try {
             $database = Model::getInstance();
@@ -99,12 +99,11 @@ class ModelReservation {
         }
     }
 
-    // permet de créer une nouvelle reservation
+    // --- Permettre de créer une nouvelle reservation
     public static function insert($trajet_id, $passager_id) {
         try {
             $database = Model::getInstance();
       
-            // insère la réservation
             $query = "SELECT MAX(id) FROM reservation";
             $statement = $database->query($query);
             $tuple = $statement->fetch();
@@ -125,7 +124,7 @@ class ModelReservation {
         }
     }
 
-    //Récupere le trajet que le passager vient de reserver
+    // --- Récuperer le trajet que le passager vient de reserver
     public static function getTrajetReserve($trajet_id) {
         try {
             $database = Model::getInstance();
@@ -158,19 +157,6 @@ class ModelReservation {
         }
     }
 
-    // Récupére le solde actualsié après transaction pour mettre a jour $SESSION et donc la nav
-    public static function getSolde($passager_id) {
-        try {
-            $database = Model::getInstance();
-            $query = "SELECT solde FROM utilisateur WHERE id = :id";
-            $statement = $database->prepare($query);
-            $statement->execute(['id' => $passager_id]);
-            $row = $statement->fetch(PDO::FETCH_ASSOC);
-            return $row['solde'];
-        } catch (PDOException $e) {
-            return NULL;
-        }
-    }
 
     public static function insertRandom() {
         try {
