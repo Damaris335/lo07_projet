@@ -11,6 +11,12 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
         ?> 
 
         <h2>Création d'un nouveau trajet</h2>
+        
+         <?php if (isset($erreur)) : ?>
+            <div class="alert alert-danger">
+                <?= $erreur ?>
+            </div>
+        <?php endif; ?>
 
         <form role="form" method='get' action='router2.php'>
 

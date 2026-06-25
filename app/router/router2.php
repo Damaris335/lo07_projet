@@ -81,6 +81,7 @@ switch ($action) {
     
     // === INNOVATION : FONCTIONNALITE ===
     case 'blablaDor':
+    case 'innovationMVC':
         controllerFonctionnalite::$action($args);
         break;
 

@@ -33,21 +33,27 @@ class ControllerTrajet {
     // --- Ajout trajet et appel validation
     public static function trajetCreated($args) {
         include 'config.php';
-
         $conducteur_id = $_SESSION['login_id'];
-
+        $ville_depart = htmlspecialchars($_GET['ville_depart']);
+        $ville_arrivee = htmlspecialchars($_GET['ville_arrivee']);
+        if ($ville_depart === $ville_arrivee) {
+            $erreur = "La ville de départ et d'arrivée ne peuvent pas être identiques.";
+            $villes = ModelVille::getAll();
+            $vehicules = ModelVehicule::getMesVehicules($conducteur_id);
+            $vue = $root . '/app/view/trajet/viewInsert.php';
+            require($vue);
+            return;
+        }
         $id = ModelTrajet::insert(
-                htmlspecialchars($_GET['ville_depart']),
-                htmlspecialchars($_GET['ville_arrivee']),
+                $ville_depart,
+                $ville_arrivee,
                 $conducteur_id,
                 htmlspecialchars($_GET['vehicule_id']),
                 htmlspecialchars($_GET['prix']),
                 htmlspecialchars($_GET['date_depart']),
                 htmlspecialchars($_GET['heure_depart'])
         );
-
         $results = ModelTrajet::getById($id);
-
         $vue = $root . '/app/view/trajet/viewInserted.php';
         require($vue);
     }

@@ -4,6 +4,12 @@
 require_once '../model/modelFonctionnalite.php';
 
 class ControllerFonctionnalite {
+    
+    public static function innovationMVC() {
+        include 'config.php';
+        $vue = $root . '/app/view/innovations/viewMVC.php';
+        require($vue);
+    }
 
     // --- Fait le classement
     public static function blablaDor($args = null) {
