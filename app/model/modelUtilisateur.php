@@ -94,8 +94,6 @@ class ModelUtilisateur {
         }
     }
 
-    
-    
     // --- Insère un nouvel utilisateur (conducteur ou passager) 
     public static function insert($nom, $prenom, $role, $solde) {
         try {
@@ -157,7 +155,21 @@ class ModelUtilisateur {
             return NULL;
         }
     }
-    
+
+    // --- Récupérer le solde d´un utilisateur
+    public static function getSoldeById($id) {
+        try {
+            $database = Model::getInstance();
+            $query = "SELECT solde FROM utilisateur WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            return (float) $row['solde'];
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 }
 ?>
 <!-- ----- fin ModelUtilisateur -->

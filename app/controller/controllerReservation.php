@@ -32,7 +32,7 @@ class ControllerReservation {
         $trajet_id = $_GET['trajet_id'];
         $passager_id = $_SESSION['login_id'];
 
-        $solde_passager = $_SESSION['solde'];
+        $solde_passager = ModelUtilisateur::getSoldeById($passager_id);
         $prix = ModelTrajet::getPrixById($trajet_id);
 
         // Erreur solde inferieur au prix 
