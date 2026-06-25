@@ -9,32 +9,31 @@
         ?>
 
         <div class="row justify-content-center mt-5">
-            <div class="col-md-12">
-
-
 
                 <h2 class="mb-0">Analyse des superglobales</h2>
-            </div>
-
+                
 
                 <?php if (isset($erreur) && $erreur): ?>
-                <div class="alert alert-danger">
-                <?php echo $erreur; ?>
-                </div>
-<?php endif; ?>
+                    <div class="alert alert-danger">
+                        <?php echo $erreur; ?>
+                    </div>
+                <?php endif; ?>
 
             <!-- Le cookie _ga est Google analytics, cookie déposé automatiquement si on visite un site qui l'utilise ou si l'environnement de dév est configuré pour-->
             <h3 class="mt-4">$_COOKIE</h3>
+            
             <table class="table table-bordered mt-2 bg-light">
+                
                 <thead>
                     <tr><th>#</th><th>Clé</th><th>Valeur</th></tr>
                 </thead>
+                
                 <tbody>
                     <?php
                     $j = 1;
                     foreach ($_COOKIE as $cle => $valeur) {
                         if ($cle == "envoi") {
-                            continue; // On cache le bouton
+                            continue;
                         }
                         echo "<tr>";
                         printf("<td><b>%d</b></td>", $j);
@@ -52,19 +51,23 @@
                         echo "<tr><td colspan='3' class='text-center'>Aucune donnée COOKIE reçue</td></tr>";
                     ?>
                 </tbody>
+                
             </table>
 
             <h3 class="mt-4">$_SESSION</h3>
+            
             <table class="table table-bordered mt-2 bg-light">
+                
                 <thead>
                     <tr><th>#</th><th>Clé</th><th>Valeur</th></tr>
                 </thead>
+                
                 <tbody>
                     <?php
                     $j = 1;
                     foreach ($_SESSION as $cle => $valeur) {
                         if ($cle == "envoi") {
-                            continue; // On cache le bouton
+                            continue;
                         }
                         echo "<tr>";
                         printf("<td><b>%d</b></td>", $j);
@@ -82,10 +85,12 @@
                         echo "<tr><td colspan='3' class='text-center'>Aucune donnée SESSION reçue</td></tr>";
                     ?>
                 </tbody>
+                
             </table>
-
 
         </div>
     </div>
 <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
 </body>
+</html>
+<!-- fin viewSuperglobales -->  

@@ -1,34 +1,41 @@
-<!-- ----- début viewInsert -->
-<?php 
+<!-- ----- début ville/viewInsert -->
+<?php
 require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
 ?>
 
 <body>
-  <div class="container">
-    <?php
-      include $root . '/app/view/fragment/fragmentBlablacarMenu.php';
-      include $root . '/app/view/fragment/fragmentBlablacarJumbotron.html';
-    ?> 
-      <h2>Formulaire d'ajout d'une nouvelle ville</h2>
-      <?php if (isset($erreur) && $erreur): ?>
-              <div class="alert alert-danger">
+    <div class="container">
+        <?php
+        include $root . '/app/view/fragment/fragmentBlablacarMenu.php';
+        include $root . '/app/view/fragment/fragmentBlablacarJumbotron.html';
+        ?> 
+
+        <h2>Formulaire d'ajout d'une nouvelle ville</h2>
+
+        <?php if (isset($erreur) && $erreur): ?>
+            <div class="alert alert-danger">
                 <?php echo $erreur; ?>
-              </div>
-            <?php endif; ?>
-    <form role="form" method='get' action='router2.php'>
-      <div class="form-group">
-        <input type="hidden" name="action" value="villeCreated">   
-        <label class='w-25' for="id">Nom : </label><br><input type="text" name='nom' size='75' title="lettres uniquement" required> <br><br>
-      </div>
-      <p/>
-       <br/> 
-      <button class="btn btn-primary" type="submit">Ajouter</button>
-    </form>
-    <p/>
-  </div>
-  <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
+            </div>
+        <?php endif; ?>
 
-<!-- ----- fin viewInsert -->
+        <form role="form" method='get' action='router2.php'>
+            <div class="form-group">
 
+                <input type="hidden" name="action" value="villeCreated">
 
+                <label class='w-25' for="id">Nom : </label><br>
+                <input type="text" name='nom' size='75' title="lettres uniquement" required>
 
+                <br><br>
+            </div>
+
+            <br> 
+            <button class="btn btn-primary" type="submit">Ajouter</button>
+
+        </form>
+
+    </div>
+    <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
+</body>
+</html>
+<!-- ----- fin ville/viewInsert -->

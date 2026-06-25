@@ -16,18 +16,8 @@ $action = isset($param['action']) ? htmlspecialchars($param['action']) : 'accuei
 unset($param['action']);
 $args = $param;
 
-// --- Actions publiques (pas besoin d'être connecté)
-// $actionsPubliques = ['accueil', 'authLogin', 'authLoginPost', 'trajetReadAll', 'trajetReadOne'];
-
-// --- Vérification session pour les actions protégées
-//if (!in_array($action, $actionsPubliques) && !isset($_SESSION['utilisateur'])) {
-//    $action = 'authLogin';
-//}
-
-
-
-// --- Liste des méthodes autorisées
 switch ($action) {
+    
     // === AUTH ===
     case 'authLogin':
     case 'authLoginPost':
@@ -38,7 +28,7 @@ switch ($action) {
     // === TRAJETS ===
     case 'trajetReadAll':
     case 'trajetReadOne':
-    case 'trajetCreate':       // conducteur seulement
+    case 'trajetCreate':
     case 'trajetCreated':
     case 'trajetDelete':
     case 'trajetDeleted':
@@ -77,7 +67,7 @@ switch ($action) {
 
     // === UTILISATEUR ===
     case 'utilisateurProfil':
-    case 'utilisateurReadAll':  // admin seulement
+    case 'utilisateurReadAll':
     case 'utilisateurCreate':
     case 'utilisateurCreated':
         ControllerUtilisateur::$action($args);

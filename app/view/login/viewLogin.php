@@ -2,51 +2,56 @@
 <?php require($root . 'app/view/fragment/fragmentBlablacarHeader.html'); ?>
 
 <body>
-  <div class="container">
-    <?php include $root . 'app/view/fragment/fragmentBlablacarMenu.php'; 
-    include $root . 'app/view/fragment/fragmentBlablacarJumbotron.html';?>
+    <div class="container">
+        <?php
+        include $root . 'app/view/fragment/fragmentBlablacarMenu.php';
+        include $root . 'app/view/fragment/fragmentBlablacarJumbotron.html';
+        ?>
 
-    <div class="row justify-content-center mt-5">
-      <div class="col-md-4">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
 
-        <div class="card shadow-sm">
-          <div class="card-header text-white text-center" style="background-color: #adb5bd">
-            <h4 class="mb-0">Connexion</h4>
-          </div>
-          <div class="card-body">
+                    <div class="card-header text-white text-center" style="background-color: #adb5bd">
+                        <h4 class="mb-0">Connexion</h4>
+                    </div>
 
-            <?php if (isset($erreur) && $erreur): ?>
-              <div class="alert alert-danger">
-                <?php echo $erreur; ?>
-              </div>
-            <?php endif; ?>
+                    <div class="card-body">
 
-            <form method="get" action="router2.php">
-              <input type="hidden" name="action" value="authLoginPost">
+                        <?php if (isset($erreur) && $erreur): ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erreur; ?>
+                            </div>
+                        <?php endif; ?>
 
-              <div class="mb-3">
-                <label for="login" class="form-label">Login</label>
-                <input type="text" class="form-control" id="login" name="login"
-                       placeholder="Votre login" autofocus required>
-              </div>
+                        <form method="get" action="router2.php">
 
-              <div class="mb-3">
-                <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" id="password" name="password"
-                       placeholder="Votre mot de passe" required>
-              </div>
+                            <input type="hidden" name="action" value="authLoginPost">
 
-              <div class="d-grid">
-                <button type="submit" class="btn" style="background-color: #adb5bd; color:white">Se connecter</button>
-              </div>
-            </form>
+                            <div class="mb-3">
+                                <label for="login" class="form-label">Login</label>
+                                <input type="text" class="form-control" id="login" name="login"
+                                       placeholder="Votre login" autofocus required>
+                            </div>
 
-          </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="Votre mot de passe" required>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn" style="background-color: #adb5bd; color:white">Se connecter</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
-
-      </div>
     </div>
-
-  </div>
-  <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
+    <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
+</body>
+</html>
 <!-- ----- fin viewLogin -->

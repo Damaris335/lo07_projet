@@ -1,4 +1,4 @@
-<!-- ----- début viewInsert -->
+<!-- ----- début trajet/viewInsert -->
 <?php
 require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
 ?>
@@ -9,10 +9,15 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
         include $root . '/app/view/fragment/fragmentBlablacarMenu.php';
         include $root . '/app/view/fragment/fragmentBlablacarJumbotron.html';
         ?> 
+
         <h2>Création d'un nouveau trajet</h2>
+
         <form role="form" method='get' action='router2.php'>
+
             <div class="form-group">
-                <input type="hidden" name="action" value="trajetCreated">   
+
+                <input type="hidden" name="action" value="trajetCreated">
+
                 <label class='w-25' for="id">Ville de départ : </label> <br>
                 <select name="ville_depart" required>
                     <option value="" selected disabled>Sélectionnez une ville</option>
@@ -21,7 +26,8 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                         echo "<option value='{$ville->getId()}'>{$ville->getNom()}</option>";
                     }
                     ?>
-                </select> <br><br>                          
+                </select> <br><br>  
+
                 <label class='w-25' for="id">Ville d'arrivée : </label><br> <select name="ville_arrivee" required>
                     <option value="" selected disabled>Sélectionnez une ville</option>
                     <?php
@@ -30,6 +36,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                     }
                     ?>
                 </select> <br><br> 
+
                 <label class='w-25' for="id">Sélection d'un véhicule : </label><br><select name="vehicule_id" required>
                     <option value="" selected disabled>Sélectionnez un véhicule</option>
                     <?php
@@ -41,24 +48,24 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                     }
                     ?>
                 </select><br><br>
+
                 <label>Prix :</label><br>
-                <input type="number" name="prix" min="0" step="0.01"title="nombre à 2 décimales séparées de l'entier par un point" required>
-                <br><br>
+                <input type="number" name="prix" min="0" step="0.01"title="nombre à 2 décimales séparées de l'entier par un point" required><br><br>
+
                 <label>Date de départ :</label><br>
-                <input type="date" name="date_depart" required>
-                <br><br>
+                <input type="date" name="date_depart" required><br><br>
+
                 <label>Heure de départ :</label><br>
                 <input type="time" name="heure_depart"required>
-            </div>
-            <p/>
-            <br/> 
+
+            </div><br> 
+
             <button class="btn btn-primary" type="submit">Ajouter</button>
+
         </form>
-        <p/>
+
     </div>
     <?php include $root . '/app/view/fragment/fragmentBlablacarFooter.html'; ?>
-
-    <!-- ----- fin viewInsert -->
-
-
-
+</body> 
+</html>
+<!-- ----- fin trajet/viewInsert -->

@@ -17,28 +17,23 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
             <input type="hidden" name="action" value="trajetCloturer">
 
             <label>Trajets actifs :</label>
-
             <select name="trajet_id">
-
                 <?php foreach ($trajets as $trajet): ?>
                     <option value="<?= $trajet['id'] ?>">
                         <?= $trajet['ville_depart'] ?> vers <?= $trajet['ville_arrivee'] ?>
                         le <?= $trajet['date_depart'] ?> à <?= $trajet['heure_depart'] ?>
                     </option>
                 <?php endforeach; ?>
-
-            </select>
-
-            <br><br>
+            </select><br><br>
 
             <button class="btn btn-primary">Clôturer</button>
 
         </form>
 
     </div>
-
     <?php
     include $root . '/app/view/fragment/fragmentBlablacarFooter.html';
     ?>
-
-    <!-- ----- fin viewCloturerTrajet -->
+</body>
+</html>
+<!-- ----- fin viewCloturerTrajet -->
