@@ -18,12 +18,10 @@ class ControllerUtilisateur {
     public static function utilisateurCreate($args) {
         include 'config.php';
         $target = isset($args['target']) ? $args['target'] : 'conducteur';
-        if (DEBUG)
-            echo ("ControllerProducteur:producteurReadId : target = $target</br>");
 
         $vue = $root . '/app/view/utilisateur/viewInsert.php';
         if (DEBUG)
-            echo ("ControllerUtilisateur : utilisateurCreateConducteur : vue = $vue");
+            echo ("ControllerUtilisateur : utilisateurCreateUtilisateur : vue = $vue");
         require($vue);
     }
 
@@ -31,15 +29,22 @@ class ControllerUtilisateur {
     public static function utilisateurCreated($args) {
         include 'config.php';
 
-        $id = ModelUtilisateur::insert(
-                htmlspecialchars($_GET['nom']),
-                htmlspecialchars($_GET['prenom']),
-                htmlspecialchars($_GET['role']),
-                htmlspecialchars($_GET['solde'])
-        );
+        $nom = htmlspecialchars($_GET['nom']);
+        $prenom = htmlspecialchars($_GET['prenom']);
+        $role = htmlspecialchars($_GET['role']);
+        $solde = htmlspecialchars($_GET['solde']);
 
+        // on vérifie avant d'insérer
+        if (empty($nom) || empty($prenom) || empty($solde)) {
+            $target = $role;
+            $erreur = "Veuillez remplir tous les champs.";
+            $vue = $root . '/app/view/utilisateur/viewInsert.php';
+            require($vue);
+            return;
+        }
+
+        $id = ModelUtilisateur::insert($nom, $prenom, $role, $solde);
         $results = ModelUtilisateur::getById($id);
-
         $vue = $root . '/app/view/utilisateur/viewInserted.php';
         require($vue);
     }

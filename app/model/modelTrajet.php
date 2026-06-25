@@ -170,12 +170,12 @@ class ModelTrajet {
             return NULL;
         }
     }
-    
-    public static function getTrajetsActifs($conducteur_id) {
-    try {
-        $database = Model::getInstance();
 
-        $query = "
+    public static function getTrajetsActifs($conducteur_id) {
+        try {
+            $database = Model::getInstance();
+
+            $query = "
             SELECT t.id,
                    vd.nom AS ville_depart,
                    va.nom AS ville_arrivee,
@@ -189,16 +189,15 @@ class ModelTrajet {
             ORDER BY t.date_depart
         ";
 
-        $statement = $database->prepare($query);
-        $statement->execute(['id' => $conducteur_id]);
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $conducteur_id]);
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return NULL;
+        }
+    }
 
-    } catch (PDOException $e) {
-        return NULL;
-    }
-    }
-    
     public static function getPassagersTrajet($trajet_id) {
         try {
             $database = Model::getInstance();
@@ -217,35 +216,51 @@ class ModelTrajet {
             $statement->execute(['id' => $trajet_id]);
 
             return $statement->fetchAll(PDO::FETCH_OBJ);
-
         } catch (PDOException $e) {
             return NULL;
         }
     }
-    
+
     public static function cloturerTrajet($trajet_id) {
         try {
             $database = Model::getInstance();
 
-            $query = "
-                UPDATE trajet
-                SET statut = 'passif'
-                WHERE id = :id
-            ";
-
+            // récupère le prix et le conducteur du trajet
+            $query = "SELECT prix, conducteur_id FROM trajet WHERE id = :id";
             $statement = $database->prepare($query);
-            $statement->execute([
-                'id' => $trajet_id
-            ]);
+            $statement->execute(['id' => $trajet_id]);
+            $trajet = $statement->fetch(PDO::FETCH_ASSOC);
+            $prix = $trajet['prix'];
+            $conducteur_id = $trajet['conducteur_id'];
+
+            // récupère tous les passagers du trajet
+            $query = "SELECT passager_id FROM reservation WHERE trajet_id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $trajet_id]);
+            $passagers = $statement->fetchAll(PDO::FETCH_COLUMN);
+
+            // débite chaque passager et crédite le conducteur
+            foreach ($passagers as $passager_id) {
+                $query = "UPDATE utilisateur SET solde = solde - :prix WHERE id = :id";
+                $statement = $database->prepare($query);
+                $statement->execute(['prix' => $prix, 'id' => $passager_id]);
+
+                $query = "UPDATE utilisateur SET solde = solde + :prix WHERE id = :id";
+                $statement = $database->prepare($query);
+                $statement->execute(['prix' => $prix, 'id' => $conducteur_id]);
+            }
+
+            // clôture le trajet
+            $query = "UPDATE trajet SET statut = 'passif' WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $trajet_id]);
 
             return true;
-
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return false;
         }
     }
-
 }
 ?>
 <!-- ----- fin ModelTrajet -->

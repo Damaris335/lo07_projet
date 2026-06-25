@@ -26,16 +26,8 @@ class ControllerReservation {
 
         $idReservation = ModelReservation::insert($trajet_id, $passager_id);
 
-        if ($idReservation == -2) {
-            $vue = $root . '/app/view/reservation/viewInsertError.php';
-        } else {
-            // mise à jour du solde en session
-            $nouveauSolde = ModelReservation::getSolde($passager_id);
-            $_SESSION['solde'] = $nouveauSolde;
-            
-            $results = ModelReservation::getTrajetReserve($trajet_id);
-            $vue = $root . '/app/view/reservation/viewInserted.php';
-        }
+        $results = ModelReservation::getTrajetReserve($trajet_id);
+        $vue = $root . '/app/view/reservation/viewInserted.php';
         require($vue);
     }
 }

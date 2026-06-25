@@ -3,8 +3,7 @@
 require_once '../model/modelUtilisateur.php';
 
 class ControllerAuth {
-
-     
+ 
     // --- Page d'accueil (publique)
     public static function accueil($args = null) {
         include 'config.php';
@@ -13,7 +12,6 @@ class ControllerAuth {
         require($vue);
     }
 
-    
     // --- Affiche le formulaire de connexion
     public static function authLogin($args = null) {
         include 'config.php';

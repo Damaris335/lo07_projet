@@ -10,6 +10,11 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
       include $root . '/app/view/fragment/fragmentBlablacarJumbotron.html';
     ?> 
       <h2>Formulaire de création d'un nouveau <?php echo $target ;?></h2>
+      <?php if (isset($erreur) && $erreur): ?>
+              <div class="alert alert-danger">
+                <?php echo $erreur; ?>
+              </div>
+            <?php endif; ?>
     <form role="form" method='get' action='router2.php'>
       <div class="form-group">
         <input type="hidden" name="action" value="utilisateurCreated">

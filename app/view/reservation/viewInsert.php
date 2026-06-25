@@ -35,7 +35,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                 </select><br/>
             </div>
             <br/> 
-            <button class="btn btn-primary" type="submit">Réserveré</button>
+            <button class="btn btn-primary" type="submit">Réserver</button>
         </form>
         <p/>
     </div>

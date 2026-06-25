@@ -25,6 +25,13 @@ class ControllerVille {
     public static function villeCreated($args = null) {
         include 'config.php';
         $nom     = htmlspecialchars(trim($_GET['nom']));
+        // on vérifie avant d'insérer
+        if (empty($nom)) {
+            $erreur = "Veuillez remplir tous les champs.";
+            $vue = $root . '/app/view/ville/viewInsert.php';
+            require($vue);
+            return;
+        }
         $id = ModelVille::insert($nom);
         $results = ModelVille::getById($id); 
         $vue     = $root . '/app/view/ville/viewInserted.php';

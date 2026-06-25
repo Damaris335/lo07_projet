@@ -13,7 +13,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
         <form role="form" method='get' action='router2.php'>
             <div class="form-group">
                 <input type="hidden" name="action" value="trajetCreated">   
-                <label class='w-25' for="id">Ville de départ : </label> 
+                <label class='w-25' for="id">Ville de départ : </label> <br>
                 <select name="ville_depart" required>
                     <option value="" selected disabled>Sélectionnez une ville</option>
                     <?php
@@ -22,7 +22,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                     }
                     ?>
                 </select> <br/>                          
-                <label class='w-25' for="id">Ville d'arrivée : </label> <select name="ville_arrivee" required>
+                <label class='w-25' for="id">Ville d'arrivée : </label><br> <select name="ville_arrivee" required>
                     <option value="" selected disabled>Sélectionnez une ville</option>
                     <?php
                     foreach ($villes as $ville) {
@@ -30,7 +30,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                     }
                     ?>
                 </select> <br/> 
-                <label class='w-25' for="id">Sélection d'un véhicule : </label><select name="vehicule_id" required>
+                <label class='w-25' for="id">Sélection d'un véhicule : </label><br><select name="vehicule_id" required>
                     <option value="" selected disabled>Sélectionnez un véhicule</option>
                     <?php
                     foreach ($vehicules as $vehicule) {
@@ -41,13 +41,13 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                     }
                     ?>
                 </select><br/>
-                <label>Prix :</label>
+                <label>Prix :</label><br>
                 <input type="number" name="prix" min="0" step="0.01" required>
                 <br><br>
-                <label>Date de départ :</label>
+                <label>Date de départ :</label><br>
                 <input type="date" name="date_depart" required>
                 <br><br>
-                <label>Heure de départ :</label>
+                <label>Heure de départ :</label><br>
                 <input type="time" name="heure_depart" required>
             </div>
             <p/>

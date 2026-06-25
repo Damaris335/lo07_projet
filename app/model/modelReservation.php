@@ -103,42 +103,7 @@ class ModelReservation {
     public static function insert($trajet_id, $passager_id) {
         try {
             $database = Model::getInstance();
-
-            // récupère le prix du trajet
-            $query = "SELECT prix FROM trajet WHERE id = :id";
-            $statement = $database->prepare($query);
-            $statement->execute(['id' => $trajet_id]);
-            $trajet = $statement->fetch(PDO::FETCH_ASSOC);
-            $prix = $trajet['prix'];
-
-            // récupère le solde du passager
-            $query = "SELECT solde FROM utilisateur WHERE id = :id";
-            $statement = $database->prepare($query);
-            $statement->execute(['id' => $passager_id]);
-            $user = $statement->fetch(PDO::FETCH_ASSOC);
-            $solde = $user['solde'];
-
-            // vérifie si solde suffisant
-            if ($solde < $prix) {
-                return -2; // code solde insuffisant
-            }
-
-            // débite le passager
-            $query = "UPDATE utilisateur SET solde = solde - :prix WHERE id = :id";
-            $statement = $database->prepare($query);
-            $statement->execute(['prix' => $prix, 'id' => $passager_id]);
-
-            // crédite le conducteur
-            $query = "SELECT conducteur_id FROM trajet WHERE id = :id";
-            $statement = $database->prepare($query);
-            $statement->execute(['id' => $trajet_id]);
-            $trajet2 = $statement->fetch(PDO::FETCH_ASSOC);
-            $conducteur_id = $trajet2['conducteur_id'];
-
-            $query = "UPDATE utilisateur SET solde = solde + :prix WHERE id = :id";
-            $statement = $database->prepare($query);
-            $statement->execute(['prix' => $prix, 'id' => $conducteur_id]);
-
+      
             // insère la réservation
             $query = "SELECT MAX(id) FROM reservation";
             $statement = $database->query($query);
@@ -231,7 +196,7 @@ class ModelReservation {
 
                 $result = self::insert($trajet_id, $passager_id);
 
-                // -2 = solde insuffisant, -1 = erreur SQL, sinon ok
+                
                 if ($result > 0)
                     $inserted++;
                 $tentatives++;
