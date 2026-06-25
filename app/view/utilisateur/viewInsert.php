@@ -20,9 +20,9 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
         <input type="hidden" name="action" value="utilisateurCreated">
         
         <input type="hidden" name="role"   value="<?php echo $target; ?>">     
-        <label class='w-25' for="id">Nom : </label><input type="text" name='nom' size='75'> <br/>                          
-        <label class='w-25' for="id">Prénom : </label><input type="text" name='prenom' size='75'> <br/> 
-        <label class='w-25' for="id">Solde : </label><input type="text" name='solde' size='75'> <br/>          
+        <label class='w-25' for="id">Nom : </label><br><input type="text" name='nom' size='75' pattern="[A-Za-zÀ-ÿ\s]+" title="lettres uniquement" required> <br><br>    
+        <label class='w-25' for="id">Prénom : </label><br><input type="text" name='prenom' size='75' pattern="[A-Za-zÀ-ÿ\s]+" title="lettres uniquement" required> <br><br>
+        <label class='w-25' for="id">Solde : </label><br><input type="text" name='solde' size='75' step="0.01"  min="0" pattern="^\d+(\.\d{1,2})?$" title="2 décimales max avec un séparées de l'entier avec un point" required> <br><br>    
       </div>
       <p/>
        <br/> 

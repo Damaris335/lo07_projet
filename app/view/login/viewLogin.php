@@ -10,7 +10,7 @@
       <div class="col-md-4">
 
         <div class="card shadow-sm">
-          <div class="card-header bg-primary text-white text-center">
+          <div class="card-header text-white text-center" style="background-color: #adb5bd">
             <h4 class="mb-0">Connexion</h4>
           </div>
           <div class="card-body">
@@ -37,7 +37,7 @@
               </div>
 
               <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Se connecter</button>
+                <button type="submit" class="btn" style="background-color: #adb5bd; color:white">Se connecter</button>
               </div>
             </form>
 

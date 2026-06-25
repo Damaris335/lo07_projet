@@ -21,7 +21,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                         echo "<option value='{$ville->getId()}'>{$ville->getNom()}</option>";
                     }
                     ?>
-                </select> <br/>                          
+                </select> <br><br>                          
                 <label class='w-25' for="id">Ville d'arrivée : </label><br> <select name="ville_arrivee" required>
                     <option value="" selected disabled>Sélectionnez une ville</option>
                     <?php
@@ -29,7 +29,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                         echo "<option value='{$ville->getId()}'>{$ville->getNom()}</option>";
                     }
                     ?>
-                </select> <br/> 
+                </select> <br><br> 
                 <label class='w-25' for="id">Sélection d'un véhicule : </label><br><select name="vehicule_id" required>
                     <option value="" selected disabled>Sélectionnez un véhicule</option>
                     <?php
@@ -40,15 +40,15 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                         . "</option>";
                     }
                     ?>
-                </select><br/>
+                </select><br><br>
                 <label>Prix :</label><br>
-                <input type="number" name="prix" min="0" step="0.01" required>
+                <input type="number" name="prix" min="0" step="0.01"title="nombre à 2 décimales séparées de l'entier par un point" required>
                 <br><br>
                 <label>Date de départ :</label><br>
                 <input type="date" name="date_depart" required>
                 <br><br>
                 <label>Heure de départ :</label><br>
-                <input type="time" name="heure_depart" required>
+                <input type="time" name="heure_depart"required>
             </div>
             <p/>
             <br/> 

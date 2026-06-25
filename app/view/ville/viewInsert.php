@@ -18,7 +18,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
     <form role="form" method='get' action='router2.php'>
       <div class="form-group">
         <input type="hidden" name="action" value="villeCreated">   
-        <label class='w-25' for="id">Nom : </label><input type="text" name='nom' size='75'> <br/>                          <br/>
+        <label class='w-25' for="id">Nom : </label><br><input type="text" name='nom' size='75' title="lettres uniquement" required> <br><br>
       </div>
       <p/>
        <br/> 
