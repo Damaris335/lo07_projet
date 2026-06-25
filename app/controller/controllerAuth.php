@@ -6,24 +6,27 @@ class ControllerAuth {
  
     // --- Page d'accueil
     public static function accueil($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $vue = $root . '/app/view/viewBlablacarAccueil.php';
-        if (DEBUG) echo ("ControllerAuth : accueil : vue = $vue");
+        if ($debug) echo ("ControllerAuth : accueil : vue = $vue");
         require($vue);
     }
 
     // --- Afficher le formulaire de connexion
     public static function authLogin($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $erreur = null;
         $vue = $root . '/app/view/login/viewLogin.php';
-        if (DEBUG) echo ("controllerAuth : authLogin : vue = $vue");
+        if ($debug) echo ("controllerAuth : authLogin : vue = $vue");
         require($vue);
     }
 
     // --- Traiter le formulaire de connexion
         public static function authLoginPost($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
  
         $login    = isset($_GET['login'])    ? htmlspecialchars(trim($_GET['login']))    : '';
         $password = isset($_GET['password']) ? htmlspecialchars(trim($_GET['password'])) : '';
@@ -53,7 +56,7 @@ class ControllerAuth {
         setcookie("remember_login", $utilisateur->getLogin(), time() + 604800); // 7 jours
         
         $vue = $root . '/app/view/viewBlablacarAccueil.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerAuth : authLogout : vue = $vue");
         require($vue);
     }
@@ -61,13 +64,14 @@ class ControllerAuth {
 
     // --- Déconnexion
     public static function authLogout($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $_SESSION['login_id'] = -1;
         session_unset();
         session_destroy();
         
         $vue = $root . '/app/view/viewBlablacarAccueil.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerAuth : authLogout : vue = $vue");
         require($vue);
     }

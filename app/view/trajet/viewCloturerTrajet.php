@@ -26,7 +26,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
                 <?php endforeach; ?>
             </select><br><br>
 
-            <button class="btn btn-primary">Clôturer</button>
+            <button class="btn btn-gris">Clôturer</button>
 
         </form>
 

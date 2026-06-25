@@ -7,28 +7,31 @@ class ControllerReservation {
 
     // --- Afficher les reservations d´un passager
     public static function reservationMesReservations() {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $passager_id = $_SESSION['login_id'];
         $results = ModelReservation::getMesReservations($passager_id);
         $vue = $root . '/app/view/reservation/viewPassagerReservations.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerReservation : reservationMesReservations : vue = $vue");
         require($vue);
     }
 
     // --- Appel formulaire ajout reservation
     public static function reservationCreate() {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $results = ModelReservation::getTrajetsActifs();
         $vue = $root . '/app/view/reservation/viewInsert.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerReservation : reservationCreate : vue = $vue");
         require($vue);
     }
 
     // --- Ajout reservation et appel validation
     public static function reservationCreated() {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $trajet_id = $_GET['trajet_id'];
         $passager_id = $_SESSION['login_id'];
 
@@ -44,12 +47,11 @@ class ControllerReservation {
             return;
         }
 
-
         $idReservation = ModelReservation::insert($trajet_id, $passager_id);
 
         $results = ModelReservation::getTrajetReserve($trajet_id);
         $vue = $root . '/app/view/reservation/viewInserted.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerReservation : reservationCreated : vue = $vue");
         require($vue);
     }

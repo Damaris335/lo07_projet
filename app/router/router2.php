@@ -1,6 +1,8 @@
 <!-- ----- debut Router2 -->
 <?php
-session_start(); 
+session_start();
+$_SESSION['root'] = dirname(dirname(__DIR__)) . "/";
+$_SESSION['debug'] = FALSE;
 require ('../controller/controllerAuth.php');
 require ('../controller/controllerVille.php');
 require ('../controller/controllerTrajet.php');

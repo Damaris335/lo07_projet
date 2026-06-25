@@ -66,7 +66,7 @@ require ($root . '/app/view/fragment/fragmentBlablacarHeader.html');
 
             </div><br> 
 
-            <button class="btn btn-primary" type="submit">Ajouter</button>
+            <button class="btn btn-gris" type="submit">Ajouter</button>
 
         </form>
 

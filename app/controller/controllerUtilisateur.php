@@ -6,28 +6,31 @@ class ControllerUtilisateur {
 
     // --- Liste de tous les utilisateurs
     public static function utilisateurReadAll($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $results = ModelUtilisateur::getAll();
         $vue = $root . '/app/view/utilisateur/viewAll.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerUtilisateur : utilisateurReadAll : vue = $vue");
         require($vue);
     }
 
     // --- Appel formulaire ajout conducteur / passager
     public static function utilisateurCreate($args) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $target = isset($args['target']) ? $args['target'] : 'conducteur';
         $vue = $root . '/app/view/utilisateur/viewInsert.php';
         
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerUtilisateur : utilisateurCreate : vue = $vue");
         require($vue);
     }
 
     // --- Ajout conducteur / passager et appel validation
     public static function utilisateurCreated($args) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         
         $nom = htmlspecialchars($_GET['nom']);
         $prenom = htmlspecialchars($_GET['prenom']);
@@ -47,7 +50,7 @@ class ControllerUtilisateur {
         $results = ModelUtilisateur::getById($id);
         $vue = $root . '/app/view/utilisateur/viewInserted.php';
         
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerUtilisateur : utilisateurCreated : vue = $vue");
         require($vue);
     }

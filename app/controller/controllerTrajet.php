@@ -9,30 +9,33 @@ class ControllerTrajet {
 
     // --- Liste des trajets d´un conducteur
     public static function trajetMesTrajets($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $conducteur_id = $_SESSION['login_id'];
         $results = ModelTrajet::getMesTrajets($conducteur_id);
         $vue = $root . '/app/view/trajet/viewMesTrajets.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerTrajet : trajetMesTrajets : vue = $vue");
         require($vue);
     }
 
     // --- Appel formulaire ajout trajet
     public static function trajetCreate($args) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $villes = ModelVille::getAll();
         $conducteur_id = $_SESSION['login_id'];
         $vehicules = ModelVehicule::getMesVehicules($conducteur_id);
         $vue = $root . '/app/view/trajet/viewInsert.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerTrajet : trajetCreate : vue = $vue");
         require($vue);
     }
 
     // --- Ajout trajet et appel validation
     public static function trajetCreated($args) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $conducteur_id = $_SESSION['login_id'];
         $ville_depart = htmlspecialchars($_GET['ville_depart']);
         $ville_arrivee = htmlspecialchars($_GET['ville_arrivee']);
@@ -55,54 +58,60 @@ class ControllerTrajet {
         );
         $results = ModelTrajet::getById($id);
         $vue = $root . '/app/view/trajet/viewInserted.php';
+        if ($debug)
+            echo ("ControllerTrajet : trajetCreated : vue = $vue");
         require($vue);
     }
 
     // -- Affiche liste des trajets actifs du conducteur
     public static function trajetPassagersActif($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
 
         $conducteur_id = $_SESSION['login_id'];
 
         $trajets = ModelTrajet::getTrajetsActifs($conducteur_id);
 
         $vue = $root . '/app/view/trajet/viewTrajetsActifs.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerTrajet : trajetPassagerActifs: vue = $vue");
         require($vue);
     }
 
     // --- Affiche passagers du trajet sélectionné par le conducteur 
     public static function trajetPassagers($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
 
         $trajet_id = $_GET['trajet_id'];
 
         $results = ModelTrajet::getPassagersTrajet($trajet_id);
 
         $vue = $root . '/app/view/trajet/viewPassagersActifs.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerTrajet : trajetPassagers : vue = $vue");
         require($vue);
     }
 
     // --- Liste trajets actifs d
     public static function trajetCloturables($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
 
         $conducteur_id = $_SESSION['login_id'];
 
         $trajets = ModelTrajet::getTrajetsActifs($conducteur_id);
 
         $vue = $root . '/app/view/trajet/viewCloturerTrajet.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerTrajet : trajetCloturables : vue = $vue");
         require($vue);
     }
 
     // --- Cloture trajet actif sélectionné
     public static function trajetCloturer($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
 
         $trajet_id = $_GET['trajet_id'];
 
@@ -115,7 +124,7 @@ class ControllerTrajet {
         $results = ModelTrajet::getById($trajet_id);
 
         $vue = $root . '/app/view/trajet/viewTrajetCloture.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerTrajet : trajetCloturer : vue = $vue");
         require($vue);
     }

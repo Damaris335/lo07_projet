@@ -6,24 +6,29 @@ class ControllerVille {
 
     // --- Liste de toutes les villes
     public static function villeReadAll($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $results = ModelVille::getAll();
         $vue = $root . '/app/view/ville/viewAll.php';
-        if (DEBUG) echo ("ControllerVille : villeReadAll : vue = $vue");
+        if ($debug) 
+            echo ("ControllerVille : villeReadAll : vue = $vue");
         require($vue);
     }
 
     // --- Appel formulaire ajout ville
     public static function villeCreate($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $vue = $root . '/app/view/ville/viewInsert.php';
-        if (DEBUG) echo ("ControllerVille : villeCreate : vue = $vue");
+        if ($debug) 
+            echo ("ControllerVille : villeCreate : vue = $vue");
         require($vue);
     }
 
     // --- Ajout ville et appel validation
     public static function villeCreated($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $nom     = htmlspecialchars(trim($_GET['nom']));
         
         if (empty($nom)) {
@@ -35,7 +40,8 @@ class ControllerVille {
         $id = ModelVille::insert($nom);
         $results = ModelVille::getById($id); 
         $vue     = $root . '/app/view/ville/viewInserted.php';
-        if (DEBUG) echo ("ControllerVille : villeCreated : vue = $vue");
+        if ($debug) 
+            echo ("ControllerVille : villeCreated : vue = $vue");
         require($vue);
     }
 

@@ -7,27 +7,30 @@ class ControllerVehicule {
 
     // --- Liste de tous les véhicules
     public static function vehiculeReadAll($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $results = ModelVehicule::getAll();
         $vue = $root . '/app/view/vehicule/viewAll.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerVehicule : vehiculeReadAll : vue = $vue");
         require($vue);
     }
 
     // --- Appel formulaire ajout vehicule
     public static function vehiculeCreate($args) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $conducteurs = ModelUtilisateur::getAllConducteurs();
         $vue = $root . '/app/view/vehicule/viewInsert.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerVehicule : vehiculeCreate : vue = $vue");
         require($vue);
     }
 
     // --- Ajout vehicule et appel validation
     public static function vehiculeCreated($args) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
 
         $marque = htmlspecialchars($_GET['marque']);
         $modele = htmlspecialchars($_GET['modele']);
@@ -47,18 +50,19 @@ class ControllerVehicule {
         $id = ModelVehicule::insert($marque, $modele, $annee, $immatriculation, $proprietaire_id);
         $results = ModelVehicule::getById($id);
         $vue = $root . '/app/view/vehicule/viewInserted.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerVehicule : vehiculeCreated : vue = $vue");
         require($vue);
     }
 
     // --- Liste des véhicules du conducteur connecté
     public static function vehiculeMesVehicules($args = null) {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $conducteur_id = $_SESSION['login_id'];
         $results = ModelVehicule::getMesVehicules($conducteur_id);
         $vue = $root . '/app/view/vehicule/viewMesVehicules.php';
-        if (DEBUG)
+        if ($debug)
             echo ("ControllerVehicule : vehiculeMesVehicules : vue = $vue");
         require($vue);
     }

@@ -6,15 +6,18 @@ require_once '../model/modelFonctionnalite.php';
 class ControllerFonctionnalite {
     
     public static function innovationMVC() {
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
         $vue = $root . '/app/view/innovations/viewMVC.php';
+        if ($debug)
+            echo ("ControllerFonctionnalite : innovationMVC : vue = $vue");
         require($vue);
     }
 
     // --- Fait le classement
     public static function blablaDor($args = null) {
-
-        include 'config.php';
+        $root = $_SESSION['root'];
+        $debug = $_SESSION['debug'];
 
         $conducteurs = ModelFonctionnalite::conducteurMaxTrajets();
         $passagers = ModelFonctionnalite::passagerMaxResa();
@@ -22,6 +25,8 @@ class ControllerFonctionnalite {
         $marques = ModelFonctionnalite::marquePreferee();
 
         $vue = $root . '/app/view/innovations/viewBlaBlaDor.php';
+        if ($debug)
+            echo ("ControllerFonctionnalite : blablaDor : vue = $vue");
         require($vue);
     }
 }
