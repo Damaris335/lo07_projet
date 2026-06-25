@@ -5,7 +5,7 @@ require_once '../model/modelUtilisateur.php';
 
 class ControllerVehicule {
 
-    // --- A4 : Liste de tous les véhicules (admin)
+    // --- Liste de tous les véhicules
     public static function vehiculeReadAll($args = null) {
         include 'config.php';
         $results = ModelVehicule::getAll();
@@ -15,13 +15,17 @@ class ControllerVehicule {
         require($vue);
     }
 
+    // --- Appel formulaire ajout vehicule
     public static function vehiculeCreate($args) {
         include 'config.php';
         $conducteurs = ModelUtilisateur::getAllConducteurs();
         $vue = $root . '/app/view/vehicule/viewInsert.php';
+        if (DEBUG)
+            echo ("ControllerVehicule : vehiculeCreate : vue = $vue");
         require($vue);
     }
 
+    // --- Ajout vehicule et appel validation
     public static function vehiculeCreated($args) {
         include 'config.php';
 
@@ -31,7 +35,7 @@ class ControllerVehicule {
         $immatriculation = htmlspecialchars($_GET['immatriculation']);
         $proprietaire_id = htmlspecialchars($_GET['proprietaire_id']);
 
-        // on vérifie avant d'insérer
+        // Erreur champ non rempli
         if (empty($marque) || empty($modele) || empty($annee) || empty($immatriculation) || empty($proprietaire_id)) {
             $erreur = "Veuillez remplir tous les champs.";
             $conducteurs = ModelUtilisateur::getAllConducteurs();
@@ -43,10 +47,12 @@ class ControllerVehicule {
         $id = ModelVehicule::insert($marque, $modele, $annee, $immatriculation, $proprietaire_id);
         $results = ModelVehicule::getById($id);
         $vue = $root . '/app/view/vehicule/viewInserted.php';
+        if (DEBUG)
+            echo ("ControllerVehicule : vehiculeCreated : vue = $vue");
         require($vue);
     }
 
-    // --- C1 : Liste des véhicules du conducteur connecté
+    // --- Liste des véhicules du conducteur connecté
     public static function vehiculeMesVehicules($args = null) {
         include 'config.php';
         $conducteur_id = $_SESSION['login_id'];

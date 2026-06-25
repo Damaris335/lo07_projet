@@ -4,7 +4,7 @@ require_once '../model/modelUtilisateur.php';
 
 class ControllerUtilisateur {
 
-    // --- A1 : Liste de tous les utilisateurs (admin seulement)
+    // --- Liste de tous les utilisateurs
     public static function utilisateurReadAll($args = null) {
         include 'config.php';
         $results = ModelUtilisateur::getAll();
@@ -14,27 +14,27 @@ class ControllerUtilisateur {
         require($vue);
     }
 
-    // --- A2 : Formulaire ajout conducteur
+    // --- Appel formulaire ajout conducteur / passager
     public static function utilisateurCreate($args) {
         include 'config.php';
         $target = isset($args['target']) ? $args['target'] : 'conducteur';
-
         $vue = $root . '/app/view/utilisateur/viewInsert.php';
+        
         if (DEBUG)
-            echo ("ControllerUtilisateur : utilisateurCreateUtilisateur : vue = $vue");
+            echo ("ControllerUtilisateur : utilisateurCreate : vue = $vue");
         require($vue);
     }
 
-    // Affiche un producteur particulier (id)
+    // --- Ajout conducteur / passager et appel validation
     public static function utilisateurCreated($args) {
         include 'config.php';
-
+        
         $nom = htmlspecialchars($_GET['nom']);
         $prenom = htmlspecialchars($_GET['prenom']);
         $role = htmlspecialchars($_GET['role']);
         $solde = htmlspecialchars($_GET['solde']);
-
-        // on vérifie avant d'insérer
+        
+        // Erreur champ non rempli
         if (empty($nom) || empty($prenom) || empty($solde)) {
             $target = $role;
             $erreur = "Veuillez remplir tous les champs.";
@@ -46,6 +46,9 @@ class ControllerUtilisateur {
         $id = ModelUtilisateur::insert($nom, $prenom, $role, $solde);
         $results = ModelUtilisateur::getById($id);
         $vue = $root . '/app/view/utilisateur/viewInserted.php';
+        
+        if (DEBUG)
+            echo ("ControllerUtilisateur : utilisateurCreated : vue = $vue");
         require($vue);
     }
 }

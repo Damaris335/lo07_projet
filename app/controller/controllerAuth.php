@@ -4,7 +4,7 @@ require_once '../model/modelUtilisateur.php';
 
 class ControllerAuth {
  
-    // --- Page d'accueil (publique)
+    // --- Page d'accueil
     public static function accueil($args = null) {
         include 'config.php';
         $vue = $root . '/app/view/viewBlablacarAccueil.php';

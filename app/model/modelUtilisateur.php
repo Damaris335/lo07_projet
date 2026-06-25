@@ -21,7 +21,6 @@ class ModelUtilisateur {
         }
     }
 
-    // --- Getters
     function getId() {
         return $this->id;
     }
@@ -51,7 +50,6 @@ class ModelUtilisateur {
     }
 
     // --- Récupère un utilisateur par login + password
-    // Retourne un objet ModelUtilisateur ou NULL si introuvable
     public static function getByLoginPassword($login, $password) {
         try {
             $database = Model::getInstance();
@@ -68,7 +66,7 @@ class ModelUtilisateur {
         }
     }
 
-    // --- Récupère tous les utilisateurs (admin : A1)
+    // --- Récupère tous les utilisateurs 
     public static function getAll() {
         try {
             $database = Model::getInstance();
@@ -82,7 +80,7 @@ class ModelUtilisateur {
         }
     }
 
-    // --- Récupère uniquement les conducteurs (pour les selects)
+    // --- Récupère uniquement les conducteurs
     public static function getAllConducteurs() {
         try {
             $database = Model::getInstance();
@@ -98,20 +96,16 @@ class ModelUtilisateur {
 
     
     
-    // --- Insère un nouvel utilisateur (conducteur ou passager) (admin : A2, A3)
-    // Le login est généré automatiquement : prenomnom en minuscules sans espaces
-    // Le password par défaut est "secret"
+    // --- Insère un nouvel utilisateur (conducteur ou passager) 
     public static function insert($nom, $prenom, $role, $solde) {
         try {
             $database = Model::getInstance();
 
-            // max(id) + 1
             $query = "SELECT MAX(id) FROM utilisateur";
             $statement = $database->query($query);
             $tuple = $statement->fetch();
             $id = $tuple[0] + 1;
 
-            // login auto : prenomnom sans espaces en minuscules
             $login = strtolower(str_replace(' ', '', $prenom . $nom));
             $password = 'secret';
 
