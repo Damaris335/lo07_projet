@@ -3,15 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/router/router2.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerReservation.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerAuth.php</file>
             <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerExaminateur.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/examinateur/viewRandomReservations.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/model/modelReservation.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/reservation/viewInserted.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/fragment/fragmentBlablacarMenu.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/examinateur/viewSuperglobales.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/model/model.php</file>
-            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/config.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerTrajet.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerUtilisateur.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerVehicule.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/controller/controllerVille.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/innovations/viewMVC.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/fragment/fragmentBlablacarHeader.html</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/reservation/viewInsert.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/trajet/viewInsert.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/trajet/viewTrajetCloture.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/trajet/viewCloturerTrajet.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/utilisateur/viewInsert.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/vehicule/viewInsert.php</file>
+            <file>file:/home/damaris/NetBeansProjects/lo07_projet/app/view/ville/viewInsert.php</file>
         </group>
     </open-files>
 </project-private>

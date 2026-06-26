@@ -53,7 +53,7 @@ class ControllerAuth {
         $_SESSION['role']     = $utilisateur->getRole();
         $_SESSION['solde']    = $utilisateur->getSolde();
  
-        setcookie("remember_login", $utilisateur->getLogin(), time() + 604800); // 7 jours
+        setcookie("remember_login", $utilisateur->getLogin(), time() + 604800); 
         
         $vue = $root . '/app/view/viewBlablacarAccueil.php';
         if ($debug)
